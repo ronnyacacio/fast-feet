@@ -22,6 +22,7 @@ class DeliverymanController {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       email: Yup.string().email().required(),
+      avatar_id: Yup.number(),
     });
 
     if (!(await schema.isValid(req.body)))
@@ -34,9 +35,14 @@ class DeliverymanController {
     if (deliverymanExists)
       return res.status(400).json({ error: 'Deliveryman already exists' });
 
-    const { name, email } = await Deliveryman.create(req.body);
+    const avatarExists = await File.findByPk(req.body.avatar_id);
 
-    return res.json({ name, email });
+    if (!avatarExists)
+      return res.status(400).json({ error: 'File not exists' });
+
+    const { name, email, avatar_id } = await Deliveryman.create(req.body);
+
+    return res.json({ name, email, avatar_id });
   }
 
   async update(req, res) {
