@@ -89,6 +89,7 @@ class DeliveryController {
       template: 'createDelivery',
       context: {
         deliveryman: deliveryman.name,
+        product,
         recipient: recipient.name,
         street: recipient.street,
         number: recipient.number,
