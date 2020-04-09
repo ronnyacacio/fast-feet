@@ -1,8 +1,11 @@
 import * as Yup from 'yup';
+
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
 import File from '../models/File';
+
+import Mail from '../../lib/Mail';
 
 class DeliveryController {
   async index(req, res) {
@@ -67,31 +70,23 @@ class DeliveryController {
     const deliveryman = await Deliveryman.findByPk(deliveryman_id);
 
     if (!deliveryman)
-      return res.status(400).json({ error: 'Delivery man does not exists' });
+      return res.status(400).json({ error: 'Deliveryman does not exists' });
 
-    const {
-      id,
-      signature_id,
-      start_date,
-      end_date,
-      canceled_at,
-    } = await Delivery.create({
+    const delivery = await Delivery.create({
       product,
       recipient_id,
       deliveryman_id,
       status: 'PENDENTE',
     });
 
-    return res.json({
-      id,
-      product,
-      recipient_id,
-      deliveryman_id,
-      signature_id,
-      start_date,
-      end_date,
-      canceled_at,
+    await Mail.sendMail({
+      to: `${deliveryman.name} <${deliveryman.email}>`,
+      subject: 'Encomenda cadastrada',
+      // template: 'createDelivery',
+      text: 'Você tem uma nova encomenda',
     });
+
+    return res.json(delivery);
   }
 
   async update(req, res) {
