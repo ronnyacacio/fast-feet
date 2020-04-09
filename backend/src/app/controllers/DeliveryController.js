@@ -62,12 +62,16 @@ class DeliveryController {
 
     const { product, recipient_id, deliveryman_id } = req.body;
 
-    const recipientExists = await Recipient.findByPk(recipient_id);
+    const recipient = await Recipient.findByPk(recipient_id, {
+      attributes: ['name', 'street', 'number', 'district', 'city', 'state'],
+    });
 
-    if (!recipientExists)
+    if (!recipient)
       return res.status(400).json({ error: 'Recipient does not exists' });
 
-    const deliveryman = await Deliveryman.findByPk(deliveryman_id);
+    const deliveryman = await Deliveryman.findByPk(deliveryman_id, {
+      attributes: ['name'],
+    });
 
     if (!deliveryman)
       return res.status(400).json({ error: 'Deliveryman does not exists' });
@@ -82,8 +86,16 @@ class DeliveryController {
     await Mail.sendMail({
       to: `${deliveryman.name} <${deliveryman.email}>`,
       subject: 'Encomenda cadastrada',
-      // template: 'createDelivery',
-      text: 'Você tem uma nova encomenda',
+      template: 'createDelivery',
+      context: {
+        deliveryman: deliveryman.name,
+        recipient: recipient.name,
+        street: recipient.street,
+        number: recipient.number,
+        district: recipient.district,
+        city: recipient.city,
+        state: recipient.state,
+      },
     });
 
     return res.json(delivery);
