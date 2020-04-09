@@ -10,6 +10,8 @@ import FileController from './app/controllers/FileController';
 import DeliveryController from './app/controllers/DeliveryController';
 import DeliveryDeliveredController from './app/controllers/DeliveryDeliveredController';
 import DeliveryPendingController from './app/controllers/DeliveryPendingController';
+import DeliveryWithDrawController from './app/controllers/DeliveryWithDrawController';
+import DeliveryFinishController from './app/controllers/DeliveryFinishController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -24,12 +26,24 @@ routes.get('/deliveryman/:id/deliveries', DeliveryDeliveredController.index);
 // Deliveries pendentes
 routes.get('/deliveryman/:id', DeliveryPendingController.index);
 
+// Retirada
+routes.put(
+  '/deliveryman/:deliverymanId/delivery/:deliveryId',
+  DeliveryWithDrawController.update
+);
+
+// Entrega
+routes.put(
+  '/deliveryman/:deliverymanId/delivery/:deliveryId/finish',
+  DeliveryFinishController.update
+);
+
+routes.post('/files', upload.single('file'), FileController.store);
+
 routes.use(authMiddleware);
 
 routes.post('/recipients', RecipientController.store);
 routes.put('/recipients/:id', RecipientController.update);
-
-routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/deliveryman', DeliverymanController.index);
 routes.post('/deliveryman', DeliverymanController.store);
