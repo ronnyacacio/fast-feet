@@ -1,5 +1,9 @@
 import Delivery from '../models/Delivery';
 import Problem from '../schemas/Problem';
+import Deliveryman from '../models/Deliveryman';
+import Recipient from '../models/Recipient';
+
+import Mail from '../../lib/Mail';
 
 class CancelDelivery {
   async destroy(req, res) {
@@ -13,7 +17,19 @@ class CancelDelivery {
     const { delivery_id } = problem;
 
     const delivery = await Delivery.findByPk(delivery_id, {
-      attributes: ['canceled_at'],
+      attributes: ['id', 'product', 'canceled_at'],
+      include: [
+        {
+          model: Deliveryman,
+          as: 'deliveryman',
+          attributes: ['name', 'email'],
+        },
+        {
+          model: Recipient,
+          as: 'recipient',
+          attributes: ['name', 'street', 'number', 'district', 'city', 'state'],
+        },
+      ],
     });
 
     if (!delivery)
@@ -27,6 +43,23 @@ class CancelDelivery {
     await delivery.update({
       id: delivery_id,
       canceled_at: new Date(),
+    });
+
+    await Mail.sendMail({
+      to: `${delivery.deliveryman.name} <${delivery.deliveryman.email}>`,
+      subject: 'Encomenda cancelada',
+      template: 'cancelDelivery',
+      context: {
+        id: delivery.id,
+        deliveryman: delivery.deliveryman.name,
+        product: delivery.product,
+        recipient: delivery.recipient.name,
+        street: delivery.recipient.street,
+        number: delivery.recipient.number,
+        district: delivery.recipient.district,
+        city: delivery.recipient.city,
+        state: delivery.recipient.state,
+      },
     });
 
     return res.json();
