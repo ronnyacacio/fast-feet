@@ -7,7 +7,8 @@ import File from '../models/File';
 
 import Problem from '../schemas/Problem';
 
-import Mail from '../../lib/Mail';
+import CreateDeliveryMail from '../jobs/CreateDeliveryMail';
+import Queue from '../../lib/Queue';
 
 class DeliveryController {
   async index(req, res) {
@@ -86,20 +87,10 @@ class DeliveryController {
       status: 'PENDENTE',
     });
 
-    await Mail.sendMail({
-      to: `${deliveryman.name} <${deliveryman.email}>`,
-      subject: 'Encomenda cadastrada',
-      template: 'createDelivery',
-      context: {
-        deliveryman: deliveryman.name,
-        product,
-        recipient: recipient.name,
-        street: recipient.street,
-        number: recipient.number,
-        district: recipient.district,
-        city: recipient.city,
-        state: recipient.state,
-      },
+    await Queue.add(CreateDeliveryMail.key, {
+      delivery,
+      deliveryman,
+      recipient,
     });
 
     return res.json(delivery);

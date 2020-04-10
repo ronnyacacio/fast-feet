@@ -3,7 +3,8 @@ import Problem from '../schemas/Problem';
 import Deliveryman from '../models/Deliveryman';
 import Recipient from '../models/Recipient';
 
-import Mail from '../../lib/Mail';
+import CancelDeliveryMail from '../jobs/CancelDeliveryMail';
+import Queue from '../../lib/Queue';
 
 class CancelDelivery {
   async destroy(req, res) {
@@ -45,21 +46,8 @@ class CancelDelivery {
       canceled_at: new Date(),
     });
 
-    await Mail.sendMail({
-      to: `${delivery.deliveryman.name} <${delivery.deliveryman.email}>`,
-      subject: 'Encomenda cancelada',
-      template: 'cancelDelivery',
-      context: {
-        id: delivery.id,
-        deliveryman: delivery.deliveryman.name,
-        product: delivery.product,
-        recipient: delivery.recipient.name,
-        street: delivery.recipient.street,
-        number: delivery.recipient.number,
-        district: delivery.recipient.district,
-        city: delivery.recipient.city,
-        state: delivery.recipient.state,
-      },
+    await Queue.add(CancelDeliveryMail.key, {
+      delivery,
     });
 
     return res.json();
