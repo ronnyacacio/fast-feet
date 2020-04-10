@@ -36,8 +36,8 @@ class DeliveryWithDrawController {
     if (!delivery)
       return res.status(400).json({ error: 'Delivery does not exists' });
 
-    if (delivery.status === 'RETIRADA')
-      return res.status(400).json({ error: 'Delivery already withdrawn' });
+    // if (delivery.status === 'RETIRADA')
+    //   return res.status(400).json({ error: 'Delivery already withdrawn' });
 
     if (Number(deliverymanId) !== delivery.deliveryman_id)
       return res.status(401).json({ error: 'Permission invalid' });
@@ -63,11 +63,11 @@ class DeliveryWithDrawController {
     if (
       isBefore(
         start_date_ISO,
-        setHours(setMinutes(setSeconds(new Date(), 0), 0), 8)
+        setHours(setMinutes(setSeconds(new Date(), 59), 59), 7)
       ) ||
       isAfter(
         start_date_ISO,
-        setHours(setMinutes(setSeconds(new Date(), 0), 0), 18)
+        setHours(setMinutes(setSeconds(new Date(), 59), 59), 17)
       )
     )
       return res.status(400).json({ error: 'Time invalid' });

@@ -5,6 +5,8 @@ import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
 import File from '../models/File';
 
+import Problem from '../schemas/Problem';
+
 import Mail from '../../lib/Mail';
 
 class DeliveryController {
@@ -131,10 +133,16 @@ class DeliveryController {
     if (!delivery)
       return res.status(400).json({ error: 'Delivery does not exists' });
 
-    if (delivery.start_date)
-      return res.status(400).json({ error: 'This Delivery already been sent' });
+    if (delivery.start_date && !delivery.canceled_at && !delivery.end_date)
+      return res
+        .status(400)
+        .json({ error: 'This delivery needs to be canceled' });
 
     await delivery.destroy();
+
+    await Problem.remove({
+      delivery_id: req.params.id,
+    });
 
     return res.json();
   }

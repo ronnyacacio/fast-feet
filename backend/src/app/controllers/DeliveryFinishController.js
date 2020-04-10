@@ -28,7 +28,7 @@ class DeliveryFinishController {
         start_date: { [Op.not]: null },
         signature_id: null,
       },
-      attributes: ['deliveryman_id'],
+      attributes: ['deliveryman_id', 'start_date'],
     });
 
     if (!delivery) {
@@ -38,6 +38,11 @@ class DeliveryFinishController {
     if (Number(deliverymanId) !== delivery.deliveryman_id) {
       return res.status(401).json({ error: 'permission invalid' });
     }
+
+    if (!delivery.start_date)
+      return res
+        .status(400)
+        .json({ error: 'This delivery has not yet been withdram' });
 
     const { signature_id } = req.body;
 
