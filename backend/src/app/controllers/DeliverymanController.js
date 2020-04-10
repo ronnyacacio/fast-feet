@@ -60,6 +60,17 @@ class DeliverymanController {
     if (!deliveryman)
       return res.status(400).json({ error: "Deliveryman don't exists" });
 
+    const checkIsDeliveryman = await Deliveryman.findOne({
+      where: {
+        email: deliveryman.email,
+      },
+    });
+
+    if (checkIsDeliveryman)
+      return res
+        .status(400)
+        .json({ error: 'There is already a deliveryman with that email' });
+
     const { id, name, email } = await deliveryman.update(req.body);
 
     return res.json({ id, name, email });
