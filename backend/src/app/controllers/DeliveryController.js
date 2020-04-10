@@ -18,6 +18,7 @@ class DeliveryController {
         'start_date',
         'end_date',
         'canceled_at',
+        'problem',
       ],
       include: [
         {
@@ -70,7 +71,7 @@ class DeliveryController {
       return res.status(400).json({ error: 'Recipient does not exists' });
 
     const deliveryman = await Deliveryman.findByPk(deliveryman_id, {
-      attributes: ['name'],
+      attributes: ['name', 'email'],
     });
 
     if (!deliveryman)

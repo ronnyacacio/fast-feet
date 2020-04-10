@@ -12,6 +12,10 @@ import DeliveryDeliveredController from './app/controllers/DeliveryDeliveredCont
 import DeliveryPendingController from './app/controllers/DeliveryPendingController';
 import DeliveryWithDrawController from './app/controllers/DeliveryWithDrawController';
 import DeliveryFinishController from './app/controllers/DeliveryFinishController';
+import ProblemController from './app/controllers/ProblemController';
+import DeliveryProblemController from './app/controllers/DeliveryProblemController';
+import DeliveryWithProblemController from './app/controllers/DeliveryWithProblemController';
+import CancelDelivery from './app/controllers/CancelDelivery';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -38,6 +42,8 @@ routes.put(
   DeliveryFinishController.update
 );
 
+routes.post('/delivery/:delivery_id/problems', ProblemController.store);
+
 routes.post('/files', upload.single('file'), FileController.store);
 
 routes.use(authMiddleware);
@@ -54,5 +60,14 @@ routes.get('/deliveries', DeliveryController.index);
 routes.post('/deliveries', DeliveryController.store);
 routes.put('/deliveries/:id', DeliveryController.update);
 routes.delete('/deliveries/:id', DeliveryController.destroy);
+
+routes.get(
+  '/deliveries/:delivery_id/problems',
+  DeliveryProblemController.index
+);
+
+routes.get('/deliveries/problems', DeliveryWithProblemController.index);
+
+routes.delete('/problem/:problem_id/cancel-delivery', CancelDelivery.destroy);
 
 export default routes;
