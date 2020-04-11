@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import express from 'express';
 import { resolve } from 'path';
 import routes from './routes';
