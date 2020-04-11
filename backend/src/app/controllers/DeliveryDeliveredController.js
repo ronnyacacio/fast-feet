@@ -7,6 +7,7 @@ import File from '../models/File';
 
 class DeliveryDeliveredController {
   async index(req, res) {
+    const { page = 1 } = req.query;
     const deliverymanId = req.params.id;
 
     const deliveryman = await Deliveryman.findByPk(deliverymanId);
@@ -19,6 +20,8 @@ class DeliveryDeliveredController {
         signature_id: { [Op.not]: null },
         deliveryman_id: deliverymanId,
       },
+      order: ['end_date'],
+      offset: (page - 1) * 10,
       attributes: [
         'id',
         'deliveryman_id',

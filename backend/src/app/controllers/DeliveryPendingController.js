@@ -5,6 +5,7 @@ import File from '../models/File';
 
 class DeliveryPendingController {
   async index(req, res) {
+    const { page = 1 } = req.query;
     const { id: deliverymanId } = req.params;
 
     const deliveryman = await Deliveryman.findByPk(deliverymanId);
@@ -18,7 +19,9 @@ class DeliveryPendingController {
         signature_id: null,
         canceled_at: null,
       },
-      order: ['id'],
+      order: ['start_date'],
+      limit: 10,
+      offset: (page - 1) * 10,
       attributes: [
         'id',
         'deliveryman_id',
