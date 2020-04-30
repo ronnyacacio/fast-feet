@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 
-import logo from '~/assets/logo.png';
+import logo from '~/assets/logo.svg';
 
 export default function SignIn() {
   function handleSubmit() {
