@@ -28,14 +28,6 @@ export const Content = styled.div`
     margin-top: 30px;
   }
 
-  span {
-    font-size: 14px;
-    color: #444;
-    font-weight: bold;
-    align-self: flex-start;
-    margin-bottom: 10px;
-  }
-
   input {
     font-size: 16px;
     background: #fff;
@@ -49,6 +41,22 @@ export const Content = styled.div`
     &::placeholder {
       color: #999;
     }
+  }
+
+  p {
+    font-size: 14px;
+    color: #444;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+
+  span {
+    font-size: 14px;
+    color: #de3b3b;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-bottom: 10px;
   }
 
   button {
