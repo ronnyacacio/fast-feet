@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { signOut } from '~/store/modules/auth/actions';
+import { changePage } from '~/store/modules/pageSelect/actions';
 import logo from '~/assets/logo.svg';
 import { Container, Content, PageSelect } from './styles';
 
 export default function Header() {
   const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.pageSelect.page);
+
+  function handleChangePage(page) {
+    dispatch(changePage(page));
+  }
 
   function handleSignOut() {
     dispatch(signOut());
@@ -18,16 +24,28 @@ export default function Header() {
       <Content>
         <nav>
           <img src={logo} alt="FastFeet" />
-          <PageSelect select>
+          <PageSelect
+            onClick={() => handleChangePage('ENCOMENDAS')}
+            select={currentPage === 'ENCOMENDAS'}
+          >
             <Link to="/delivery">ENCOMENDAS</Link>
           </PageSelect>
-          <PageSelect>
+          <PageSelect
+            onClick={() => handleChangePage('ENTREGADORES')}
+            select={currentPage === 'ENTREGADORES'}
+          >
             <Link to="/delivery">ENTREGADORES</Link>
           </PageSelect>
-          <PageSelect>
+          <PageSelect
+            onClick={() => handleChangePage('DESTINATÁRIOS')}
+            select={currentPage === 'DESTINATÁRIOS'}
+          >
             <Link to="/delivery">DESTINATÁRIOS</Link>
           </PageSelect>
-          <PageSelect>
+          <PageSelect
+            onClick={() => handleChangePage('PROBLEMAS')}
+            select={currentPage === 'PROBLEMAS'}
+          >
             <Link to="/delivery">PROBLEMAS</Link>
           </PageSelect>
         </nav>
