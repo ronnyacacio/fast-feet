@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
+import { signOut } from '~/store/modules/auth/actions';
 import logo from '~/assets/logo.svg';
 import { Container, Content, PageSelect } from './styles';
 
 export default function Header() {
-  function handleSignOut() {}
+  const dispatch = useDispatch();
+
+  function handleSignOut() {
+    dispatch(signOut());
+  }
 
   return (
     <Container>
