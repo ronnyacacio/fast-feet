@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { darken } from 'polished';
-import { GiPlainCircle } from 'react-icons/gi';
+
+import { setBackground, setColor } from '~/utils/selectColor';
+import colors from '~/utils/colors';
 
 export const Container = styled.div`
   padding: 20px 80px;
@@ -55,6 +57,7 @@ export const DeliveryList = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 20px 20px;
+
     strong {
       font-size: 16px;
     }
@@ -62,7 +65,8 @@ export const DeliveryList = styled.div`
 `;
 
 export const Scroll = styled(PerfectScrollbar)`
-  max-height: 390px;
+  position: relative;
+  max-height: 400px;
 `;
 
 export const DeliveryItem = styled.div`
@@ -75,14 +79,41 @@ export const DeliveryItem = styled.div`
   margin-bottom: 10px;
   border-radius: 4px;
 
-  div {
+  span {
+    font-size: 16px;
+    padding: 20px 0;
+    color: #666;
+  }
+
+  aside {
+    position: relative;
+    left: -25px;
+    background: ${(props) => setBackground(props.status)};
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+    padding: 0 10px;
+
+    p {
+      color: ${(props) => setColor(props.status)};
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+`;
+
+export const Deliveryman = styled.div`
+  &.init {
     position: relative;
     left: -10px;
     display: flex;
     align-items: center;
 
     div {
-      background: #f4effc;
+      background: ${(props) => colors.background[props.initialColors]};
+      display: flex;
       align-items: center;
       justify-content: center;
       width: 40px;
@@ -91,36 +122,8 @@ export const DeliveryItem = styled.div`
 
       span {
         font-size: 16px;
-        color: #a28fd0;
+        color: ${(props) => colors.color[props.initialColors]};
       }
     }
   }
-
-  span {
-    font-size: 16px;
-    padding: 20px 0;
-  }
-
-  aside {
-    position: relative;
-    left: -25px;
-    background: #dff0df;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 30px;
-    padding: 0 10px;
-    p {
-      color: #2ca42b;
-      font-size: 14px;
-      margin-left: 5px;
-      font-weight: bold;
-    }
-  }
 `;
-
-export const Ball = styled(GiPlainCircle).attrs({
-  color: '#2ca42b',
-  size: 10,
-})``;
