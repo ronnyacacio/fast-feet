@@ -25,28 +25,28 @@ export default function Header() {
         <nav>
           <img src={logo} alt="FastFeet" />
           <PageSelect
-            onClick={() => handleChangePage('ENCOMENDAS')}
-            select={currentPage === 'ENCOMENDAS'}
+            onClick={() => handleChangePage('DELIVERY')}
+            select={currentPage === 'DELIVERY'}
           >
             <Link to="/delivery">ENCOMENDAS</Link>
           </PageSelect>
           <PageSelect
-            onClick={() => handleChangePage('ENTREGADORES')}
-            select={currentPage === 'ENTREGADORES'}
+            onClick={() => handleChangePage('DELIVERYMAN')}
+            select={currentPage === 'DELIVERYMAN'}
           >
-            <Link to="/delivery">ENTREGADORES</Link>
+            <Link to="/deliveryman">ENTREGADORES</Link>
           </PageSelect>
           <PageSelect
-            onClick={() => handleChangePage('DESTINATÁRIOS')}
-            select={currentPage === 'DESTINATÁRIOS'}
+            onClick={() => handleChangePage('RECIPIENT')}
+            select={currentPage === 'RECIPIENT'}
           >
-            <Link to="/delivery">DESTINATÁRIOS</Link>
+            <Link to="/recipient">DESTINATÁRIOS</Link>
           </PageSelect>
           <PageSelect
-            onClick={() => handleChangePage('PROBLEMAS')}
-            select={currentPage === 'PROBLEMAS'}
+            onClick={() => handleChangePage('PROBLEMS')}
+            select={currentPage === 'PROBLEMS'}
           >
-            <Link to="/delivery">PROBLEMAS</Link>
+            <Link to="/problems">PROBLEMAS</Link>
           </PageSelect>
         </nav>
         <aside>
