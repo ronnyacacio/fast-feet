@@ -82,7 +82,7 @@ export default function Delivery() {
                 <GiPlainCircle color={setColor(delivery.status)} size={10} />
                 <p>{delivery.status}</p>
               </aside>
-              <Options delivery />
+              <Options delivery={delivery} />
             </DeliveryItem>
           ))}
         </Scroll>
