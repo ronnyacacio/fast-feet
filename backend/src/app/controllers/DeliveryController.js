@@ -51,6 +51,13 @@ class DeliveryController {
               model: Deliveryman,
               as: 'deliveryman',
               attributes: ['id', 'name'],
+              include: [
+                {
+                  model: File,
+                  as: 'avatar',
+                  attributes: ['id', 'url', 'path'],
+                },
+              ],
             },
             {
               model: File,

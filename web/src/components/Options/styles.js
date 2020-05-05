@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.td`
   position: relative;
-
+  margin-right: 35px;
   button {
     background: none;
     border: 0;
@@ -11,13 +11,13 @@ export const Container = styled.div`
 
 export const Actions = styled.div`
   position: absolute;
-  right: -63px;
+  right: -37px;
   z-index: 2;
   box-shadow: 0px 0px 2px #00000026;
   background: #fff;
-  padding: 15px 10px;
+  padding: 10px;
   border-radius: 4px;
-  min-width: 150px;
+  min-width: 100px;
   white-space: nowrap;
   margin-top: 5px;
   display: ${(props) => (props.visible ? 'flex' : 'none')} !important;
@@ -49,12 +49,12 @@ export const Actions = styled.div`
       border: 0;
       background: none;
       color: #999;
-      font-size: 16px;
+      font-size: 12px;
       display: flex;
       align-items: center;
 
       svg {
-        margin-right: 10px;
+        margin-right: 3px;
       }
     }
   }

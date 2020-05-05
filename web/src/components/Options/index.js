@@ -32,19 +32,19 @@ export default function Options({ delivery }) {
         <Actions visible={visible}>
           <div>
             <button type="button" onClick={handleToggleOpen}>
-              <MdVisibility size={18} color="#8E5BE8" />
+              <MdVisibility size={10} color="#8E5BE8" />
               Visualizar
             </button>
           </div>
           <div>
             <Link to="/delivery/update">
-              <MdCreate size={18} color="#4D85EE" />
+              <MdCreate size={10} color="#4D85EE" />
               Editar
             </Link>
           </div>
           <div>
             <button type="button">
-              <MdDeleteForever size={18} color="#DE3B3B" />
+              <MdDeleteForever size={10} color="#DE3B3B" />
               Excluir
             </button>
           </div>

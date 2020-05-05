@@ -23,11 +23,9 @@ export default function Delivery() {
 
   useEffect(() => {
     async function loadDeliveries() {
-      const response = await api.get(
-        `/deliveries${product ? `?product=${product}` : ''}`
-      );
+      const route = product ? `/deliveries?product=${product}` : '/deliveries';
 
-      console.log(response.data);
+      const response = await api.get(route);
 
       setDeliveries(response.data);
     }
@@ -42,7 +40,7 @@ export default function Delivery() {
         <div>
           <FiSearch color="#999" size={18} />
           <input
-            placeholder="Buscar por encomendas"
+            placeholder="Buscar por nome do produto"
             value={product}
             onChange={(e) => setProduct(e.target.value)}
           />
@@ -72,7 +70,7 @@ export default function Delivery() {
               <span>{`#${delivery.id}`}</span>
               <span>{delivery.product}</span>
               <span>{delivery.recipient.name}</span>
-              <Deliveryman className="init" initialColors={random()}>
+              <Deliveryman className="initials" initialColors={random()}>
                 {delivery.deliveryman.avatar ? (
                   <img
                     src={delivery.deliveryman.avatar.url}

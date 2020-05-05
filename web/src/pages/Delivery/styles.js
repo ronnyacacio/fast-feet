@@ -3,7 +3,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { darken } from 'polished';
 
 import { setBackground, setColor } from '~/utils/selectColor';
-import colors from '~/utils/colors';
+import colors from '~/utils/palete';
 
 export const Container = styled.div`
   padding: 20px 80px;
@@ -56,7 +56,7 @@ export const DeliveryList = styled.div`
   header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 20px;
+    padding: 20px;
 
     strong {
       font-size: 16px;
@@ -75,7 +75,7 @@ export const DeliveryItem = styled.div`
   justify-content: space-between;
   align-items: center;
   align-self: left;
-  padding: 0 20px;
+  padding: 0 10px 0 30px;
   margin-bottom: 10px;
   border-radius: 4px;
 
@@ -87,7 +87,7 @@ export const DeliveryItem = styled.div`
 
   aside {
     position: relative;
-    left: -25px;
+    right: -10px;
     background: ${(props) => setBackground(props.status)};
     border-radius: 12px;
     display: flex;
@@ -105,7 +105,7 @@ export const DeliveryItem = styled.div`
 `;
 
 export const Deliveryman = styled.div`
-  &.init {
+  &.initials {
     position: relative;
     left: -10px;
     display: flex;
