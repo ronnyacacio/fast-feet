@@ -27,6 +27,8 @@ export default function Delivery() {
         `/deliveries${product ? `?product=${product}` : ''}`
       );
 
+      console.log(response.data);
+
       setDeliveries(response.data);
     }
 
@@ -71,9 +73,16 @@ export default function Delivery() {
               <span>{delivery.product}</span>
               <span>{delivery.recipient.name}</span>
               <Deliveryman className="init" initialColors={random()}>
-                <div>
-                  <span>{initials(delivery.deliveryman.name)}</span>
-                </div>
+                {delivery.deliveryman.avatar ? (
+                  <img
+                    src={delivery.deliveryman.avatar.url}
+                    alt={delivery.deliveryman.name}
+                  />
+                ) : (
+                  <div>
+                    <span>{initials(delivery.deliveryman.name)}</span>
+                  </div>
+                )}
                 <span>{delivery.deliveryman.name}</span>
               </Deliveryman>
               <span>{delivery.recipient.city}</span>

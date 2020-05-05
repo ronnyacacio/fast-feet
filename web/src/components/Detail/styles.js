@@ -24,4 +24,11 @@ export const Container = styled.div`
     margin: 8px 0;
     color: #999;
   }
+
+  img {
+    width: 250px;
+    height: 50px;
+    padding: 0 20px;
+    border-radius: 4px;
+  }
 `;

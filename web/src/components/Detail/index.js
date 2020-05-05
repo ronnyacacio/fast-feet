@@ -24,12 +24,16 @@ const useStyles = makeStyles((theme) => ({
 export default function Detail({ open, handleClose, delivery }) {
   const classes = useStyles();
 
-  // console.log(delivery.start_date);
+  function convertedDate(date) {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const dateConverted = utcToZonedTime(parseISO(date), timezone);
 
-  // const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  // const startDate = utcToZonedTime(delivery.start_date, timezone);
+    const dateFormatted = format(dateConverted, "d'/'MM'/'yyyy", {
+      locale: pt,
+    });
 
-  // const startDateFormatted = format(startDate, "d'/'MM'/'yyyy", { locale: pt });
+    return dateFormatted;
+  }
 
   return (
     <Modal
@@ -54,16 +58,20 @@ export default function Detail({ open, handleClose, delivery }) {
           <p>Datas</p>
           <div>
             <strong>Retirada: </strong>
-            <span>{delivery.start_date}</span>
+            <span>
+              {delivery.start_date ? convertedDate(delivery.start_date) : ''}
+            </span>
           </div>
           <div>
             <strong>Entrega: </strong>
-            <span>{delivery.end_date}</span>
+            <span>
+              {delivery.end_date ? convertedDate(delivery.end_date) : ''}
+            </span>
           </div>
           <hr />
           <p>Assinatura do destinatário</p>
           {delivery.signature ? (
-            <img src={delivery.signature} alt="Assinatura" />
+            <img src={delivery.signature.url} alt="Assinatura" />
           ) : (
             <></>
           )}

@@ -111,6 +111,13 @@ export const Deliveryman = styled.div`
     display: flex;
     align-items: center;
 
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
     div {
       background: ${(props) => colors.background[props.initialColors]};
       display: flex;
