@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 import { GiPlainCircle } from 'react-icons/gi';
 
 import api from '~/services/api';
-import Options from '~/components/Options';
+import Options from './Options';
 import initials from '~/utils/initials';
 import random from '~/utils/randomNumber';
 import { setColor } from '~/utils/selectColor';
@@ -20,6 +21,12 @@ import {
 export default function Delivery() {
   const [deliveries, setDeliveries] = useState([]);
   const [product, setProduct] = useState('');
+  // const loading = useSelector((state) => state.delivery.loading);
+  const stateDeliveries = useSelector((state) => state.delivery.deliveries);
+
+  useEffect(() => {
+    setDeliveries(stateDeliveries);
+  }, [stateDeliveries]);
 
   useEffect(() => {
     async function loadDeliveries() {

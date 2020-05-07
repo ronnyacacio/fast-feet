@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import {
   MdMoreHoriz,
   MdVisibility,
@@ -7,12 +8,23 @@ import {
   MdDeleteForever,
 } from 'react-icons/md';
 
+import { destroyDeliveryRequest } from '~/store/modules/delivery/actions';
 import Detail from '~/components/Detail';
 import { Container, Actions } from './styles';
 
 export default function Options({ delivery }) {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  async function handleDelete() {
+    const option = window.confirm('Deseja mesmo excluir essa encomenda?');
+
+    if (option) {
+      dispatch(destroyDeliveryRequest(delivery.id));
+    }
+  }
 
   function handleToggleOpen() {
     setOpen(!open);
@@ -37,13 +49,19 @@ export default function Options({ delivery }) {
             </button>
           </div>
           <div>
-            <Link to="/delivery/update">
+            <Link
+              to={{
+                pathname: '/delivery/update',
+                // props.location.state.product
+                state: { delivery },
+              }}
+            >
               <MdCreate size={10} color="#4D85EE" />
               Editar
             </Link>
           </div>
           <div>
-            <button type="button">
+            <button type="button" onClick={handleDelete}>
               <MdDeleteForever size={10} color="#DE3B3B" />
               Excluir
             </button>
