@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { ClipLoader } from 'react-spinners';
 import { darken } from 'polished';
 
 import { setBackground, setColor } from '~/utils/selectColor';
@@ -63,6 +64,14 @@ export const DeliveryList = styled.div`
     }
   }
 `;
+
+export const Loading = styled(ClipLoader).attrs({
+  css: css`
+    position: absolute;
+    left: 48%;
+    top: 50%;
+  `,
+})``;
 
 export const Scroll = styled(PerfectScrollbar)`
   position: relative;

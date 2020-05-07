@@ -16,12 +16,13 @@ import {
   Scroll,
   DeliveryItem,
   Deliveryman,
+  Loading,
 } from './styles';
 
 export default function Delivery() {
   const [deliveries, setDeliveries] = useState([]);
   const [product, setProduct] = useState('');
-  // const loading = useSelector((state) => state.delivery.loading);
+  const loading = useSelector((state) => state.delivery.loading);
   const stateDeliveries = useSelector((state) => state.delivery.deliveries);
 
   useEffect(() => {
@@ -71,35 +72,39 @@ export default function Delivery() {
           <strong>Status</strong>
           <strong>Ações</strong>
         </header>
-        <Scroll>
-          {deliveries.map((delivery) => (
-            <DeliveryItem status={delivery.status}>
-              <span>{`#${delivery.id}`}</span>
-              <span>{delivery.product}</span>
-              <span>{delivery.recipient.name}</span>
-              <Deliveryman className="initials" initialColors={random()}>
-                {delivery.deliveryman.avatar ? (
-                  <img
-                    src={delivery.deliveryman.avatar.url}
-                    alt={delivery.deliveryman.name}
-                  />
-                ) : (
-                  <div>
-                    <span>{initials(delivery.deliveryman.name)}</span>
-                  </div>
-                )}
-                <span>{delivery.deliveryman.name}</span>
-              </Deliveryman>
-              <span>{delivery.recipient.city}</span>
-              <span>{delivery.recipient.state}</span>
-              <aside>
-                <GiPlainCircle color={setColor(delivery.status)} size={10} />
-                <p>{delivery.status}</p>
-              </aside>
-              <Options delivery={delivery} />
-            </DeliveryItem>
-          ))}
-        </Scroll>
+        {loading ? (
+          <Loading size={50} color="#7d40e3" loading={loading} />
+        ) : (
+          <Scroll>
+            {deliveries.map((delivery) => (
+              <DeliveryItem status={delivery.status}>
+                <span>{`#${delivery.id}`}</span>
+                <span>{delivery.product}</span>
+                <span>{delivery.recipient.name}</span>
+                <Deliveryman className="initials" initialColors={random()}>
+                  {delivery.deliveryman.avatar ? (
+                    <img
+                      src={delivery.deliveryman.avatar.url}
+                      alt={delivery.deliveryman.name}
+                    />
+                  ) : (
+                    <div>
+                      <span>{initials(delivery.deliveryman.name)}</span>
+                    </div>
+                  )}
+                  <span>{delivery.deliveryman.name}</span>
+                </Deliveryman>
+                <span>{delivery.recipient.city}</span>
+                <span>{delivery.recipient.state}</span>
+                <aside>
+                  <GiPlainCircle color={setColor(delivery.status)} size={10} />
+                  <p>{delivery.status}</p>
+                </aside>
+                <Options delivery={delivery} />
+              </DeliveryItem>
+            ))}
+          </Scroll>
+        )}
       </DeliveryList>
     </Container>
   );

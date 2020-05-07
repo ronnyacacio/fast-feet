@@ -44,6 +44,7 @@ class CancelDelivery {
     await delivery.update({
       id: delivery_id,
       canceled_at: new Date(),
+      status: 'CANCELADO',
     });
 
     await Queue.add(CancelDeliveryMail.key, {
