@@ -22,7 +22,8 @@ import {
 export default function Delivery() {
   const [deliveries, setDeliveries] = useState([]);
   const [product, setProduct] = useState('');
-  const loading = useSelector((state) => state.delivery.loading);
+  const [loading, setLoading] = useState(false);
+  const stateLoading = useSelector((state) => state.delivery.loading);
   const stateDeliveries = useSelector((state) => state.delivery.deliveries);
 
   useEffect(() => {
@@ -31,11 +32,13 @@ export default function Delivery() {
 
   useEffect(() => {
     async function loadDeliveries() {
+      setLoading(true);
       const route = product ? `/deliveries?product=${product}` : '/deliveries';
 
       const response = await api.get(route);
 
       setDeliveries(response.data);
+      setLoading(false);
     }
 
     loadDeliveries();
@@ -72,7 +75,7 @@ export default function Delivery() {
           <strong>Status</strong>
           <strong>Ações</strong>
         </header>
-        {loading ? (
+        {loading || stateLoading ? (
           <Loading size={50} color="#7d40e3" loading={loading} />
         ) : (
           <Scroll>

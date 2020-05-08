@@ -1,26 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import AsyncSelect from 'react-select/async';
+import { toast } from 'react-toastify';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
+import api from '~/services/api';
+import Select from '~/components/Select';
 import { Record, Actions, Content } from './styles';
 
-const options = ['Ronny', 'Renato', 'Renan', 'Rodrigo'];
+export default function CreateDelivery() {
+  const [deliveries, setDeliveries] = useState([]);
+  const [recipients, setRecipients] = useState([]);
+  const [selectedRecipient, setSelectedRecipient] = useState([]);
+  const [deliverymans, setDeliverymans] = useState([]);
+  const [selectedDeliveryman, setSelectedDeliveryman] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-const filterColors = (inputValue) => {
-  return options.filter((i) =>
-    i.toLowerCase().includes(inputValue.toLowerCase())
-  );
-};
+  useEffect(() => {
+    async function loadSelectOptions() {
+      try {
+        const recipientResponse = await api.get('recipients');
+        const deliverymanResponse = await api.get('deliveryman');
 
-const promiseOptions = (inputValue) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(filterColors(inputValue));
-    }, 1000);
+        console.log(recipientResponse.data);
+        setRecipients(recipientResponse.data);
+        setDeliverymans(deliverymanResponse.data);
+      } catch (err) {
+        toast.error('Falha ao carregar dados');
+      }
+    }
+
+    loadSelectOptions();
+  }, []);
+
+  const recipientsOptions = recipients.map((recipient) => {
+    const data = {
+      value: recipient,
+      label: recipient.name,
+    };
+
+    return data;
   });
 
-export default function CreateDelivery() {
+  const handleChangeRecipient = (selectedOption) => {
+    const { value } = selectedOption;
+
+    setSelectedRecipient(value);
+  };
+
   return (
     <Record>
       <header>
@@ -40,11 +66,16 @@ export default function CreateDelivery() {
       </header>
       <Content>
         <div>
-          <AsyncSelect
-            cacheOptions
-            defaultOptions
-            placeholder="Destinatário"
-            loadOptions={promiseOptions}
+          <Select
+            name="recipient.name"
+            label="Destinatário"
+            placeholder="Selecione um destinatário"
+            options={recipientsOptions}
+            defaultValue={{
+              value: selectedRecipient.id,
+              label: selectedRecipient.name,
+            }}
+            onChange={handleChangeRecipient}
           />
         </div>
       </Content>
