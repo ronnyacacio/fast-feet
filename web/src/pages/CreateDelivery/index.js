@@ -5,23 +5,20 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
 import Select from '~/components/Select';
-import { Record, Actions, Content } from './styles';
+import Input from '~/components/Input';
+import { FormContainer, Actions, Content } from './styles';
 
 export default function CreateDelivery() {
-  const [deliveries, setDeliveries] = useState([]);
   const [recipients, setRecipients] = useState([]);
-  const [selectedRecipient, setSelectedRecipient] = useState([]);
   const [deliverymans, setDeliverymans] = useState([]);
+  const [selectedRecipient, setSelectedRecipient] = useState([]);
   const [selectedDeliveryman, setSelectedDeliveryman] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadSelectOptions() {
       try {
         const recipientResponse = await api.get('recipients');
         const deliverymanResponse = await api.get('deliveryman');
-
-        console.log(recipientResponse.data);
         setRecipients(recipientResponse.data);
         setDeliverymans(deliverymanResponse.data);
       } catch (err) {
@@ -41,14 +38,29 @@ export default function CreateDelivery() {
     return data;
   });
 
+  const deliverymanOptions = deliverymans.map((deliveryman) => {
+    const data = {
+      value: deliveryman,
+      label: deliveryman.name,
+    };
+
+    return data;
+  });
+
   const handleChangeRecipient = (selectedOption) => {
     const { value } = selectedOption;
 
     setSelectedRecipient(value);
   };
 
+  const handleChangeDeliveryman = (selectedOption) => {
+    const { value } = selectedOption;
+
+    setSelectedDeliveryman(value);
+  };
+
   return (
-    <Record>
+    <FormContainer>
       <header>
         <strong>Cadastro de encomendas</strong>
         <Actions>
@@ -77,8 +89,24 @@ export default function CreateDelivery() {
             }}
             onChange={handleChangeRecipient}
           />
+          <Select
+            name="deliveryman.name"
+            label="Entregador"
+            placeholder="Selecione um entregador"
+            options={deliverymanOptions}
+            defaultValue={{
+              value: selectedDeliveryman.id,
+              label: selectedDeliveryman.name,
+            }}
+            onChange={handleChangeDeliveryman}
+          />
         </div>
+        <Input
+          name="product"
+          label="Nome do produto"
+          placeholder="Ex: iPhone"
+        />
       </Content>
-    </Record>
+    </FormContainer>
   );
 }

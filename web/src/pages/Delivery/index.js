@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 import { GiPlainCircle } from 'react-icons/gi';
 
-import api from '~/services/api';
+import { loadDeliveryRequest } from '~/store/modules/delivery/actions';
 import Options from './Options';
 import initials from '~/utils/initials';
 import random from '~/utils/randomNumber';
@@ -20,29 +20,15 @@ import {
 } from './styles';
 
 export default function Delivery() {
-  const [deliveries, setDeliveries] = useState([]);
   const [product, setProduct] = useState('');
-  const [loading, setLoading] = useState(false);
-  const stateLoading = useSelector((state) => state.delivery.loading);
-  const stateDeliveries = useSelector((state) => state.delivery.deliveries);
+  const loading = useSelector((state) => state.delivery.loading);
+  const deliveries = useSelector((state) => state.delivery.deliveries);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setDeliveries(stateDeliveries);
-  }, [stateDeliveries]);
-
-  useEffect(() => {
-    async function loadDeliveries() {
-      setLoading(true);
-      const route = product ? `/deliveries?product=${product}` : '/deliveries';
-
-      const response = await api.get(route);
-
-      setDeliveries(response.data);
-      setLoading(false);
-    }
-
-    loadDeliveries();
-  }, [product]);
+    dispatch(loadDeliveryRequest(product));
+  }, [dispatch, product]);
 
   return (
     <Container>
@@ -75,7 +61,7 @@ export default function Delivery() {
           <strong>Status</strong>
           <strong>Ações</strong>
         </header>
-        {loading || stateLoading ? (
+        {loading ? (
           <Loading size={50} color="#7d40e3" loading={loading} />
         ) : (
           <Scroll>

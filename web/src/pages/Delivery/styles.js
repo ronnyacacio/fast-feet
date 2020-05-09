@@ -31,8 +31,7 @@ export const Actions = styled.div`
     input {
       height: 36px;
       font-size: 14px;
-      border-radius: 4px;
-      border: none;
+      border: transparent;
       margin-left: 8px;
     }
   }

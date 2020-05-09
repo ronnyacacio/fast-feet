@@ -19,7 +19,7 @@ export default function SelectComponent({
       border: '1px solid #ccc',
       borderRadius: 4,
       height: 45,
-      width: '100%',
+      // width: '100%',
       padding: '0 7px',
       color: '#666',
     }),

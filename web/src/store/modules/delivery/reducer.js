@@ -8,13 +8,17 @@ const INITIAL_STATE = {
 export default function delivery(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
-      case '@delivery/DESTROY_REQUEST': {
+      case '@delivery/LOAD_REQUEST': {
         draft.loading = true;
         break;
       }
-      case '@delivery/DESTROY_SUCCESS': {
+      case '@delivery/LOAD_SUCCESS': {
         draft.deliveries = action.payload.deliveries;
         draft.loading = false;
+        break;
+      }
+      case '@delivery/DESTROY_REQUEST': {
+        draft.loading = true;
         break;
       }
       default:

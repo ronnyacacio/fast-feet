@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Form } from '@rocketseat/unform';
 
-export const Record = styled(Form)`
+export const FormContainer = styled(Form)`
   padding: 30px 250px;
 
   header {
@@ -41,6 +41,6 @@ export const Actions = styled.div`
 
 export const Content = styled.div`
   background: #fff;
-  flex: 1;
-  height: 300px;
+  border-radius: 4px;
+  padding: 20px 30px;
 `;
