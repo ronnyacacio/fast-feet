@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Form } from '@rocketseat/unform';
+import SelectStyles from '~/components/Select';
+import InputStyles from '~/components/Input';
 
 export const FormContainer = styled(Form)`
   padding: 30px 250px;
@@ -43,4 +45,14 @@ export const Content = styled.div`
   background: #fff;
   border-radius: 4px;
   padding: 20px 30px;
+
+  aside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
+
+export const Select = styled(SelectStyles)``;
+
+export const Input = styled(InputStyles)``;

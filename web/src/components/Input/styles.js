@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   label {
+    margin-top: 10px;
     color: #444;
     font-weight: bold;
     margin-bottom: 10px;

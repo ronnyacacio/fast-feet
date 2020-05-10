@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
-import Select from '~/components/Select';
-import Input from '~/components/Input';
-import { FormContainer, Actions, Content } from './styles';
+import history from '~/services/history';
+import { FormContainer, Actions, Content, Select, Input } from './styles';
+
+const schema = Yup.object().shape({
+  product: Yup.string().required('O produto da entrega é obrigatório'),
+  deliveryman_id: Yup.number().required('Selecione um entregador'),
+  recipient_id: Yup.number().required('Selecione um entregador'),
+});
 
 export default function CreateDelivery() {
   const [recipients, setRecipients] = useState([]);
@@ -59,8 +65,29 @@ export default function CreateDelivery() {
     setSelectedDeliveryman(value);
   };
 
+  async function handleSubmit({ product }) {
+    try {
+      const deliveryman_id = selectedDeliveryman.id;
+      const recipient_id = selectedRecipient.id;
+
+      const params = { product, deliveryman_id, recipient_id };
+
+      if (!(await schema.isValid(params))) {
+        toast.error('Algo deu errado ao salvar a encomenda');
+        return;
+      }
+
+      await api.post('/deliveries', params);
+
+      toast.success('Encomenda salva com sucesso');
+      history.push('/delivery');
+    } catch (err) {
+      toast.error('Algo deu errado ao salvar a encomenda');
+    }
+  }
+
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleSubmit}>
       <header>
         <strong>Cadastro de encomendas</strong>
         <Actions>
@@ -77,9 +104,9 @@ export default function CreateDelivery() {
         </Actions>
       </header>
       <Content>
-        <div>
+        <aside>
           <Select
-            name="recipient.name"
+            name="recipient_id"
             label="Destinatário"
             placeholder="Selecione um destinatário"
             options={recipientsOptions}
@@ -90,7 +117,7 @@ export default function CreateDelivery() {
             onChange={handleChangeRecipient}
           />
           <Select
-            name="deliveryman.name"
+            name="deliveryman_id"
             label="Entregador"
             placeholder="Selecione um entregador"
             options={deliverymanOptions}
@@ -100,7 +127,7 @@ export default function CreateDelivery() {
             }}
             onChange={handleChangeDeliveryman}
           />
-        </div>
+        </aside>
         <Input
           name="product"
           label="Nome do produto"
