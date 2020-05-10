@@ -52,7 +52,6 @@ export default function Options({ delivery }) {
             <Link
               to={{
                 pathname: '/delivery/update',
-                // props.location.state.product
                 state: { delivery },
               }}
             >

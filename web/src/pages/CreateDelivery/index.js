@@ -17,8 +17,8 @@ const schema = Yup.object().shape({
 export default function CreateDelivery() {
   const [recipients, setRecipients] = useState([]);
   const [deliverymans, setDeliverymans] = useState([]);
-  const [selectedRecipient, setSelectedRecipient] = useState([]);
-  const [selectedDeliveryman, setSelectedDeliveryman] = useState([]);
+  const [selectedRecipient, setSelectedRecipient] = useState('');
+  const [selectedDeliveryman, setSelectedDeliveryman] = useState('');
 
   useEffect(() => {
     async function loadSelectOptions() {
@@ -137,3 +137,5 @@ export default function CreateDelivery() {
     </FormContainer>
   );
 }
+
+// props.location.state.product
