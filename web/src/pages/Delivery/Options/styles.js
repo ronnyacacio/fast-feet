@@ -11,13 +11,13 @@ export const Container = styled.td`
 
 export const Actions = styled.div`
   position: absolute;
-  right: -37px;
+  right: -67px;
   z-index: 2;
   box-shadow: 0px 0px 2px #00000026;
   background: #fff;
-  padding: 10px;
+  padding: 15px 10px;
   border-radius: 4px;
-  min-width: 100px;
+  min-width: 150px;
   white-space: nowrap;
   margin-top: 5px;
   display: ${(props) => (props.visible ? 'flex' : 'none')} !important;
@@ -26,7 +26,7 @@ export const Actions = styled.div`
   &::before {
     content: '';
     position: absolute;
-    left: calc(50% - 6px);
+    left: calc(50% - 10px);
     top: -8px;
     width: 0;
     height: 0;
@@ -49,12 +49,12 @@ export const Actions = styled.div`
       border: 0;
       background: none;
       color: #999;
-      font-size: 12px;
+      font-size: 16px;
       display: flex;
       align-items: center;
 
       svg {
-        margin-right: 3px;
+        margin-right: 10px;
       }
     }
   }

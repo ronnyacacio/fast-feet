@@ -7,14 +7,15 @@ import { setBackground, setColor } from '~/utils/selectColor';
 import colors from '~/utils/palete';
 
 export const Container = styled.div`
-  padding: 20px 80px;
+  padding: 20px 0 0 0;
   strong {
+    margin-left: 80px;
     font-size: 24px;
   }
 `;
 
 export const Actions = styled.div`
-  margin-top: 20px;
+  margin: 20px 80px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,8 +58,9 @@ export const DeliveryList = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 20px;
-
+    margin: 0 80px;
     strong {
+      margin: 0;
       font-size: 16px;
     }
   }
@@ -73,7 +75,7 @@ export const Loading = styled(ClipLoader).attrs({
 })``;
 
 export const Scroll = styled(PerfectScrollbar)`
-  position: relative;
+  padding: 0 80px;
   max-height: 400px;
 `;
 
