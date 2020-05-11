@@ -53,7 +53,7 @@ export const Actions = styled.div`
   }
 `;
 
-export const DeliveryList = styled.div`
+export const DeliverymanList = styled.div`
   header {
     display: flex;
     justify-content: space-between;
@@ -79,7 +79,7 @@ export const Scroll = styled(PerfectScrollbar)`
   max-height: 400px;
 `;
 
-export const DeliveryItem = styled.div`
+export const DeliverymanItem = styled.div`
   background: #fff;
   display: flex;
   justify-content: space-between;
@@ -89,7 +89,19 @@ export const DeliveryItem = styled.div`
   margin-bottom: 10px;
   border-radius: 4px;
 
+  position: relative;
+  left: -10px;
+  display: flex;
+  align-items: center;
+
   span {
+    font-size: 16px;
+    padding: 20px 0;
+    color: #666;
+  }
+
+  p {
+    margin-left: 70px;
     font-size: 16px;
     padding: 20px 0;
     color: #666;
@@ -114,33 +126,27 @@ export const DeliveryItem = styled.div`
   }
 `;
 
-export const Deliveryman = styled.div`
-  &.initials {
-    position: relative;
-    left: -10px;
+export const Picture = styled.div`
+  margin-left: 90px;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  div {
+    background: ${(props) => colors.background[props.initialColors]};
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-
-    div {
-      background: ${(props) => colors.background[props.initialColors]};
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-
-      span {
-        font-size: 16px;
-        color: ${(props) => colors.color[props.initialColors]};
-      }
+    span {
+      font-size: 16px;
+      color: ${(props) => colors.color[props.initialColors]};
     }
   }
 `;

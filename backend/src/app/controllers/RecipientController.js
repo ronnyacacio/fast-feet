@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { Op } from 'sequelize';
 
 import Recipient from '../models/Recipient';
+import Delivery from '../models/Delivery';
 
 class RecipientController {
   async index(req, res) {
@@ -130,6 +131,15 @@ class RecipientController {
     if (!recipient) {
       return res.status(400).json({ error: 'Recipient does not exists' });
     }
+
+    const deliveries = await Delivery.findAll({
+      where: { recipient_id: req.params.id },
+    });
+
+    if (deliveries)
+      return res
+        .status(400)
+        .json({ error: 'Recipient still contains deliveries in his name' });
 
     await recipient.destroy();
 

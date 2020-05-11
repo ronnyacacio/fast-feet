@@ -6,12 +6,14 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import { FormContainer, Actions, Content, Select, Input } from './styles';
+import Select from '~/components/Select';
+import Input from '~/components/Input';
+import { FormContainer, Actions, Content } from './styles';
 
 const schema = Yup.object().shape({
-  product: Yup.string().required('O produto da entrega é obrigatório'),
-  deliveryman_id: Yup.number().required('Selecione um entregador'),
-  recipient_id: Yup.number().required('Selecione um entregador'),
+  product: Yup.string().required(),
+  deliveryman_id: Yup.number().required(),
+  recipient_id: Yup.number().required(),
 });
 
 export default function CreateDelivery() {
@@ -73,7 +75,7 @@ export default function CreateDelivery() {
       const params = { product, deliveryman_id, recipient_id };
 
       if (!(await schema.isValid(params))) {
-        toast.error('Algo deu errado ao salvar a encomenda');
+        toast.error('Todos os campos são obrigatórios');
         return;
       }
 

@@ -1,33 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import {
-  MdMoreHoriz,
-  MdVisibility,
-  MdCreate,
-  MdDeleteForever,
-} from 'react-icons/md';
+import { toast } from 'react-toastify';
+import { MdMoreHoriz, MdCreate, MdDeleteForever } from 'react-icons/md';
 
-import { destroyDeliveryRequest } from '~/store/modules/delivery/actions';
-import Detail from '../Detail';
+import api from '~services/api';
 import { Container, Actions } from './styles';
 
-export default function Options({ delivery }) {
+export default function Options({ deliveryman }) {
   const [visible, setVisible] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  const dispatch = useDispatch();
 
   async function handleDelete() {
-    const option = window.confirm('Deseja mesmo excluir essa encomenda?');
+    const option = window.confirm('Deseja mesmo excluir esse entregador?');
 
     if (option) {
-      dispatch(destroyDeliveryRequest(delivery.id));
+      try {
+        const response = await api.delete(`/deliveryman/${deliveryman.id}`);
+      } catch (err) {
+        toast.warn('O entregador ainda possui entregas cadastradas!');
+      }
     }
-  }
-
-  function handleToggleOpen() {
-    setOpen(!open);
   }
 
   function handleToggleVisible() {
@@ -43,16 +34,10 @@ export default function Options({ delivery }) {
 
         <Actions visible={visible}>
           <div>
-            <button type="button" onClick={handleToggleOpen}>
-              <MdVisibility size={18} color="#8E5BE8" />
-              Visualizar
-            </button>
-          </div>
-          <div>
             <Link
               to={{
-                pathname: '/delivery/update',
-                state: { delivery },
+                pathname: '/deliveryman/update',
+                state: { deliveryman },
               }}
             >
               <MdCreate size={18} color="#4D85EE" />
@@ -67,7 +52,6 @@ export default function Options({ delivery }) {
           </div>
         </Actions>
       </Container>
-      <Detail open={open} handleClose={handleToggleOpen} delivery={delivery} />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import Deliveryman from '../models/Deliveryman';
+import Delivery from '../models/Delivery';
 import File from '../models/File';
 
 class DeliverymanController {
@@ -99,6 +100,15 @@ class DeliverymanController {
     if (!deliveryman) {
       return res.status(400).json({ error: 'Deliveryman does not exists' });
     }
+
+    const deliveries = await Delivery.findAll({
+      where: { deliveryman_id: req.params.id },
+    });
+
+    if (deliveries)
+      return res
+        .status(400)
+        .json({ error: 'Deliveryman still contains deliveries in his name' });
 
     await deliveryman.destroy();
 
