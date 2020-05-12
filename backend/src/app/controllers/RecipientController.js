@@ -136,7 +136,7 @@ class RecipientController {
       where: { recipient_id: req.params.id },
     });
 
-    if (deliveries)
+    if (deliveries.length > 0)
       return res
         .status(400)
         .json({ error: 'Recipient still contains deliveries in his name' });

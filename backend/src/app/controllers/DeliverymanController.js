@@ -105,7 +105,9 @@ class DeliverymanController {
       where: { deliveryman_id: req.params.id },
     });
 
-    if (deliveries)
+    console.log(deliveries);
+
+    if (deliveries.length > 0)
       return res
         .status(400)
         .json({ error: 'Deliveryman still contains deliveries in his name' });

@@ -21,7 +21,7 @@ export const Actions = styled.div`
   align-items: center;
 
   div {
-    width: 240px;
+    width: 260px;
     background: #fff;
     border-radius: 4px;
     display: flex;
@@ -31,6 +31,7 @@ export const Actions = styled.div`
 
     input {
       height: 36px;
+      width: 300px;
       font-size: 14px;
       border: none;
       margin-left: 8px;

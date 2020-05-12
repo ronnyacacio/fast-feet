@@ -14,7 +14,7 @@ export default function Options({ deliveryman }) {
 
     if (option) {
       try {
-        const response = await api.delete(`/deliveryman/${deliveryman.id}`);
+        await api.delete(`/deliveryman/${deliveryman.id}`);
       } catch (err) {
         toast.warn('O entregador ainda possui entregas cadastradas!');
       }

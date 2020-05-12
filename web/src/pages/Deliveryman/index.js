@@ -48,7 +48,7 @@ export default function Delivery() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <Link to="/delivery/create">
+        <Link to="/deliveryman/create">
           <button type="button">
             <FiPlus color="#fff" size={30} style={{ paddingRight: 5 }} />
             CADASTRAR
