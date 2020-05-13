@@ -14,7 +14,7 @@ const schema = Yup.object().shape({
   recipient_id: Yup.number().required('Selecione um entregador'),
 });
 
-export default function CreateDelivery({ location }) {
+export default function UpdateDelivery({ location }) {
   const [recipients, setRecipients] = useState([]);
   const [deliverymans, setDeliverymans] = useState([]);
   const [selectedRecipient, setSelectedRecipient] = useState(

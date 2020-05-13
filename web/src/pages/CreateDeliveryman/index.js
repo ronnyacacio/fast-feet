@@ -6,7 +6,7 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 import api from '~/services/api';
 import history from '~/services/history';
 import Input from '~/components/Input';
-import AvatarInput from './AvatarInput';
+import AvatarInput from '~/components/AvatarInput';
 import { FormContainer, Actions, Content } from './styles';
 
 export default function CreateDelivery() {

@@ -65,9 +65,9 @@ class DeliverymanController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      name: Yup.string(),
-      email: Yup.string().email(),
-      avatar_id: Yup.number(),
+      name: Yup.string().required(),
+      email: Yup.string().email().required(),
+      avatar_id: Yup.number().required(),
     });
 
     if (!(await schema.isValid(req.body)))
@@ -84,7 +84,7 @@ class DeliverymanController {
       },
     });
 
-    if (checkIsDeliveryman)
+    if (checkIsDeliveryman && checkIsDeliveryman.id === req.params.id)
       return res
         .status(400)
         .json({ error: 'There is already a deliveryman with that email' });
