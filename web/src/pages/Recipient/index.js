@@ -10,8 +10,8 @@ import {
   Container,
   Actions,
   Scroll,
-  DeliverymanItem,
-  DeliverymanList,
+  RecipientItem,
+  RecipientList,
   Loading,
 } from './styles';
 
@@ -54,28 +54,30 @@ export default function Delivery() {
         </Link>
       </Actions>
 
-      <DeliverymanList>
+      <RecipientList>
         <header>
           <strong>ID</strong>
           <strong>Nome</strong>
-          <strong>Email</strong>
+          <strong>Endereço</strong>
           <strong>Ações</strong>
         </header>
         {loading ? (
           <Loading size={50} color="#7d40e3" loading={loading} />
         ) : (
           <Scroll>
-            {recipients.map((deliveryman) => (
-              <DeliverymanItem initialColors={random()}>
-                <span>{`#${deliveryman.id}`}</span>
-                <p className="name">{deliveryman.name}</p>
-                <span>{deliveryman.email}</span>
-                <Options deliveryman={deliveryman} />
-              </DeliverymanItem>
+            {recipients.map((recipient) => (
+              <RecipientItem initialColors={random()}>
+                <span>{`#${recipient.id}`}</span>
+                <p>{recipient.name}</p>
+                <span>
+                  {`Rua ${recipient.street}, ${recipient.number}, ${recipient.city} - ${recipient.state}`}
+                </span>
+                <Options recipient={recipient} />
+              </RecipientItem>
             ))}
           </Scroll>
         )}
-      </DeliverymanList>
+      </RecipientList>
     </Container>
   );
 }

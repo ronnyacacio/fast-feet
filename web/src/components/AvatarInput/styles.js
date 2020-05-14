@@ -12,23 +12,26 @@ export const Container = styled.div`
       opacity: 0.7;
     }
 
-    &.initials {
-      background: ${(props) => colors.background[props.initialColors]};
-      span {
-        font-size: 16px;
-        color: ${(props) => colors.color[props.initialColors]};
-      }
-    }
-
     div {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      border: 2px dashed #ddd;
+      border: ${(props) => (props.initials ? 'none' : '2px dashed #ddd')};
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+
+      &.initials {
+        background: ${(props) => colors.background[props.initialColors]};
+        border: 2px dashed #ddd;
+
+        p {
+          font-size: 66px;
+          color: ${(props) => colors.color[props.initialColors]};
+        }
+      }
+
       strong {
         margin-top: 5px;
         color: #ccc;

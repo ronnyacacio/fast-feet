@@ -39,7 +39,7 @@ export default function AvatarInput({ initials }) {
   }
 
   return (
-    <Container initialColors={random()}>
+    <Container initialColors={random()} initials={initials}>
       <label htmlFor="avatar">
         {preview ? (
           <img src={preview} alt="Avatar do Entregador" />

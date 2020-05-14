@@ -14,7 +14,7 @@ export default function Options({ recipient }) {
 
     if (option) {
       try {
-        await api.delete(`/recipient/${recipient.id}`);
+        await api.delete(`/recipients/${recipient.id}`);
       } catch (err) {
         toast.warn('O destinatário ainda possui entregas cadastradas!');
       }

@@ -4,7 +4,6 @@ import { ClipLoader } from 'react-spinners';
 import { darken } from 'polished';
 
 import { setBackground, setColor } from '~/utils/selectColor';
-import colors from '~/utils/palete';
 
 export const Container = styled.div`
   padding: 20px 0 0 0;
@@ -54,7 +53,7 @@ export const Actions = styled.div`
   }
 `;
 
-export const DeliverymanList = styled.div`
+export const RecipientList = styled.div`
   header {
     display: flex;
     justify-content: space-between;
@@ -80,7 +79,7 @@ export const Scroll = styled(PerfectScrollbar)`
   max-height: 400px;
 `;
 
-export const DeliverymanItem = styled.div`
+export const RecipientItem = styled.div`
   background: #fff;
   display: flex;
   justify-content: space-between;
@@ -102,7 +101,7 @@ export const DeliverymanItem = styled.div`
   }
 
   p {
-    margin-left: 70px;
+    margin-left: 130px;
     font-size: 16px;
     padding: 20px 0;
     color: #666;
