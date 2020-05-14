@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useField } from '@rocketseat/unform';
 import { MdInsertPhoto } from 'react-icons/md';
+
 import api from '~/services/api';
+import random from '~/utils/randomNumber';
 
 import { Container } from './styles';
 
-export default function AvatarInput() {
+export default function AvatarInput({ initials }) {
   const { defaultValue, registerField } = useField('avatar');
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
@@ -37,15 +39,23 @@ export default function AvatarInput() {
   }
 
   return (
-    <Container>
+    <Container initialColors={random()}>
       <label htmlFor="avatar">
         {preview ? (
           <img src={preview} alt="Avatar do Entregador" />
         ) : (
           <>
             <div>
-              <MdInsertPhoto size={44} color="#ddd" />
-              <strong>Adicionar foto</strong>
+              {initials ? (
+                <div className="initials">
+                  <p>{initials}</p>
+                </div>
+              ) : (
+                <>
+                  <MdInsertPhoto size={44} color="#ddd" />
+                  <strong>Adicionar foto</strong>
+                </>
+              )}
             </div>
           </>
         )}

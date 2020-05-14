@@ -69,13 +69,13 @@ export default function Delivery() {
         ) : (
           <Scroll>
             {deliverymans.map((deliveryman) => (
-              <DeliverymanItem initialColors={random()}>
+              <DeliverymanItem>
                 <span>{`#${deliveryman.id}`}</span>
-                <Picture>
+                <Picture initialColors={random()}>
                   {deliveryman.avatar ? (
                     <img src={deliveryman.avatar.url} alt={deliveryman.name} />
                   ) : (
-                    <div>
+                    <div className="initials">
                       <span>{initials(deliveryman.name)}</span>
                     </div>
                   )}

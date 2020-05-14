@@ -53,14 +53,16 @@ class DeliverymanController {
     if (deliverymanExists)
       return res.status(400).json({ error: 'Deliveryman already exists' });
 
-    const avatarExists = await File.findByPk(req.body.avatar_id);
+    if (req.body.avatar_id) {
+      const avatarExists = await File.findByPk(req.body.avatar_id);
 
-    if (!avatarExists)
-      return res.status(400).json({ error: 'File not exists' });
+      if (!avatarExists)
+        return res.status(400).json({ error: 'File not exists' });
+    }
 
-    const { name, email, avatar_id } = await Deliveryman.create(req.body);
+    const { name, email } = await Deliveryman.create(req.body);
 
-    return res.json({ name, email, avatar_id });
+    return res.json({ name, email });
   }
 
   async update(req, res) {

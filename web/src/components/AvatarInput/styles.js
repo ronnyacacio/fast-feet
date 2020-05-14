@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '~/utils/palete';
 
 export const Container = styled.div`
   display: flex;
@@ -10,6 +11,15 @@ export const Container = styled.div`
     &:hover {
       opacity: 0.7;
     }
+
+    &.initials {
+      background: ${(props) => colors.background[props.initialColors]};
+      span {
+        font-size: 16px;
+        color: ${(props) => colors.color[props.initialColors]};
+      }
+    }
+
     div {
       width: 150px;
       height: 150px;

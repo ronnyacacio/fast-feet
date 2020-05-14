@@ -5,6 +5,7 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
 import history from '~/services/history';
+import initials from '~/utils/initials';
 import Input from '~/components/Input';
 import AvatarInput from '~/components/AvatarInput';
 import { FormContainer, Actions, Content } from './styles';
@@ -48,7 +49,7 @@ export default function UpdateDeliveryman({ location }) {
         </Actions>
       </header>
       <Content>
-        <AvatarInput name="avatar_id" />
+        <AvatarInput name="avatar_id" initials={initials(deliveryman.name)} />
 
         <Input name="name" label="Nome" placeholder="John Doe" />
         <br />

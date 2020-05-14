@@ -129,6 +129,24 @@ export const DeliverymanItem = styled.div`
 
 export const Picture = styled.div`
   margin-left: 90px;
+
+  &.initials {
+    div {
+      background: ${(props) => colors.background[props.initialColors]};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+
+      span {
+        font-size: 16px;
+        color: ${(props) => colors.color[props.initialColors]};
+      }
+    }
+  }
+
   img {
     width: 40px;
     height: 40px;
