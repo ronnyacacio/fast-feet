@@ -8,7 +8,7 @@ export function setColor(status) {
       return colors.colorStatus.pending;
     case 'RETIRADA':
       return colors.colorStatus.withdraw;
-    case 'CANCELADA':
+    case 'CANCELADO':
       return colors.colorStatus.canceled;
     default:
   }
@@ -22,7 +22,7 @@ export function setBackground(status) {
       return colors.backgroundStatus.pending;
     case 'RETIRADA':
       return colors.backgroundStatus.withdraw;
-    case 'CANCELADA':
+    case 'CANCELADO':
       return colors.backgroundStatus.canceled;
     default:
   }

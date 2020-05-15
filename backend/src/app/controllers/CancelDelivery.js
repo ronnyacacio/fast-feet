@@ -28,7 +28,7 @@ class CancelDelivery {
         {
           model: Recipient,
           as: 'recipient',
-          attributes: ['name', 'street', 'number', 'district', 'city', 'state'],
+          attributes: ['name', 'street', 'number', 'city', 'state'],
         },
       ],
     });

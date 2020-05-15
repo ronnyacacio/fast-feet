@@ -29,7 +29,6 @@ class DeliveryWithProblemController {
             'name',
             'state',
             'city',
-            'district',
             'street',
             'number',
             'complement',
