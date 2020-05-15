@@ -42,9 +42,9 @@ export default function CreateDelivery() {
       <Content>
         <AvatarInput name="avatar_id" />
 
-        <Input name="name" label="Nome" placeholder="John Doe" />
+        <Input name="name" label="Nome" placeholder="Nome do entregador" />
         <br />
-        <Input name="email" label="Email" placeholder="johndoe@fastfeet.com" />
+        <Input name="email" label="Email" placeholder="Email do entregador" />
       </Content>
     </FormContainer>
   );

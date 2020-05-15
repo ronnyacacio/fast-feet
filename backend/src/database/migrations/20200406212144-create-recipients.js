@@ -19,10 +19,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      district: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       street: {
         type: Sequelize.STRING,
         allowNull: false,
