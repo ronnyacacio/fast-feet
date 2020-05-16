@@ -70,7 +70,7 @@ export default function Delivery() {
                 <span>{`#${delivery.id}`}</span>
                 <span>{delivery.product}</span>
                 <span>{delivery.recipient.name}</span>
-                <Deliveryman className="initials" initialColors={random()}>
+                <Deliveryman initialColors={random()}>
                   {delivery.deliveryman.avatar ? (
                     <img
                       src={delivery.deliveryman.avatar.url}

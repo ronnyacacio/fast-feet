@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.td`
+export const Container = styled.div`
   position: relative;
   margin-right: 35px;
   button {

@@ -77,7 +77,7 @@ export const Loading = styled(ClipLoader).attrs({
 
 export const Scroll = styled(PerfectScrollbar)`
   padding: 0 80px;
-  max-height: 400px;
+  height: 380px;
 `;
 
 export const DeliveryItem = styled.div`
@@ -87,8 +87,8 @@ export const DeliveryItem = styled.div`
   align-items: center;
   align-self: left;
   padding: 0 10px 0 30px;
-  margin-bottom: 10px;
   border-radius: 4px;
+  margin-bottom: 20px;
 
   span {
     font-size: 16px;
@@ -116,32 +116,30 @@ export const DeliveryItem = styled.div`
 `;
 
 export const Deliveryman = styled.div`
-  &.initials {
-    position: relative;
-    left: -10px;
+  position: relative;
+  left: -10px;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  > div {
+    background: ${(props) => colors.background[props.initialColors]};
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-
-    div {
-      background: ${(props) => colors.background[props.initialColors]};
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-
-      span {
-        font-size: 16px;
-        color: ${(props) => colors.color[props.initialColors]};
-      }
+    > span {
+      font-size: 16px;
+      color: ${(props) => colors.color[props.initialColors]};
     }
   }
 `;

@@ -77,7 +77,7 @@ export const Loading = styled(ClipLoader).attrs({
 
 export const Scroll = styled(PerfectScrollbar)`
   padding: 0 80px;
-  max-height: 400px;
+  max-height: 380px;
 `;
 
 export const DeliverymanItem = styled.div`

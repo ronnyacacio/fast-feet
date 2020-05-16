@@ -72,7 +72,7 @@ export default function Deliveryman() {
                     </div>
                   )}
                 </Picture>
-                <p className="name">{deliveryman.name}</p>
+                <p>{deliveryman.name}</p>
                 <span>{deliveryman.email}</span>
                 <Options deliveryman={deliveryman} />
               </DeliverymanItem>

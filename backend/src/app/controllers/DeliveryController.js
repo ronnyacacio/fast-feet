@@ -127,7 +127,7 @@ class DeliveryController {
     const { product, recipient_id, deliveryman_id } = req.body;
 
     const recipient = await Recipient.findByPk(recipient_id, {
-      attributes: ['name', 'street', 'number', 'district', 'city', 'state'],
+      attributes: ['name', 'street', 'number', 'city', 'state'],
     });
 
     if (!recipient)
