@@ -27,6 +27,7 @@ export function* cancelDelivery({ payload }) {
     const { id } = payload;
 
     yield call(api.delete, `/problem/${id}/cancel-delivery`);
+    toast.success('Encomenda cancelada com sucesso!');
     yield put(loadDeliveryRequest());
   } catch (err) {
     toast.warn('Essa encomenda já foi cancelada!');
