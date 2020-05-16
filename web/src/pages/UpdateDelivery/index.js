@@ -78,7 +78,7 @@ export default function UpdateDelivery({ location }) {
       const body = { product, deliveryman_id, recipient_id };
 
       if (!(await schema.isValid(body))) {
-        toast.error('Algo deu errado ao salvar a encomenda');
+        toast.error('Informe o nome do produto!');
         return;
       }
 

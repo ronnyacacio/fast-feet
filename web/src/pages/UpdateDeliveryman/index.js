@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
@@ -9,6 +10,12 @@ import initials from '~/utils/initials';
 import Input from '~/components/Input';
 import AvatarInput from '~/components/AvatarInput';
 import { FormContainer, Actions, Content } from './styles';
+
+const schema = Yup.object().shape({
+  name: Yup.string().required('Obrigatório'),
+  email: Yup.string().email('Informe um email válido').required('Obrigatório'),
+  avatar_id: Yup.number(),
+});
 
 export default function UpdateDeliveryman({ location }) {
   const { deliveryman } = location.state;
@@ -29,6 +36,7 @@ export default function UpdateDeliveryman({ location }) {
 
   return (
     <FormContainer
+      schema={schema}
       initialData={deliveryman}
       onSubmit={handleSubmit}
       ref={formRef}

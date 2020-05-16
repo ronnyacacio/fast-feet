@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
@@ -8,6 +9,12 @@ import history from '~/services/history';
 import Input from '~/components/Input';
 import AvatarInput from '~/components/AvatarInput';
 import { FormContainer, Actions, Content } from './styles';
+
+const schema = Yup.object().shape({
+  name: Yup.string().required('Obrigatório'),
+  email: Yup.string().required('Obrigatório'),
+  avatar_id: Yup.number(),
+});
 
 export default function CreateDelivery() {
   const formRef = useRef(null);
@@ -23,7 +30,7 @@ export default function CreateDelivery() {
   }
 
   return (
-    <FormContainer onSubmit={handleSubmit} ref={formRef}>
+    <FormContainer schema={schema} onSubmit={handleSubmit} ref={formRef}>
       <header>
         <strong>Cadastro de entregadores</strong>
         <Actions>
