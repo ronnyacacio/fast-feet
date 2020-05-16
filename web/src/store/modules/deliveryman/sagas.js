@@ -26,7 +26,7 @@ export function* destroy({ payload }) {
 
     yield put(loadDeliverymanSuccess(response.data));
   } catch (err) {
-    toast.error('Falha na exclusão do entregador!');
+    toast.error('O entregador ainda possui entregas cadastradas!');
   }
 }
 

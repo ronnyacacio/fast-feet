@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 import { MdMoreHoriz, MdCreate, MdDeleteForever } from 'react-icons/md';
 
-import api from '~services/api';
+import { destroyRecipientRequest } from '~/store/modules/recipient/actions';
 import { Container, Actions } from './styles';
 
 export default function Options({ recipient }) {
   const [visible, setVisible] = useState(false);
 
+  const dispatch = useDispatch();
+
   async function handleDelete() {
     const option = window.confirm('Deseja mesmo excluir esse destinatário?');
 
     if (option) {
-      try {
-        await api.delete(`/recipients/${recipient.id}`);
-      } catch (err) {
-        toast.warn('O destinatário ainda possui entregas cadastradas!');
-      }
+      dispatch(destroyRecipientRequest(recipient.id));
     }
   }
 

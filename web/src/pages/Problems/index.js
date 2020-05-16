@@ -1,25 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import api from '~/services/api';
+import { loadProblemRequest } from '~/store/modules/problem/actions';
 import Options from './Options';
 import { Container, ProblemList, Loading, Scroll, ProblemItem } from './styles';
 
 export default function Problems() {
-  const [problems, setProblems] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const problems = useSelector((state) => state.problem.problems);
+  const loading = useSelector((state) => state.problem.loading);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function loadProblems() {
-      setLoading(true);
-      const deliveries = await api.get('deliveries/problems');
-      deliveries.data.forEach(async (delivery) => {
-        const response = await api.get(`deliveries/${delivery.id}/problems`);
-        setProblems(...problems, response.data);
-      });
-      setLoading(false);
-    }
-    loadProblems();
-  }, []);
+    dispatch(loadProblemRequest());
+  }, [dispatch]);
 
   return (
     <Container>
@@ -35,7 +29,7 @@ export default function Problems() {
         ) : (
           <Scroll>
             {problems.map((problem) => (
-              <ProblemItem>
+              <ProblemItem key={problem._id}>
                 <span>{`#${problem.delivery_id}`}</span>
                 <p>{problem.description}</p>
                 <Options problem={problem} />

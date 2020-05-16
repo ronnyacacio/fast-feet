@@ -11,7 +11,7 @@ export const Container = styled.td`
 
 export const Actions = styled.div`
   position: absolute;
-  right: -67px;
+  right: -90px;
   z-index: 2;
   box-shadow: 0px 0px 2px #00000026;
   background: #fff;

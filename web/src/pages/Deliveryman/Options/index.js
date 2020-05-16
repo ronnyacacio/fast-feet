@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 import { MdMoreHoriz, MdCreate, MdDeleteForever } from 'react-icons/md';
 
-import api from '~services/api';
+import { destroyDeliverymanRequest } from '~/store/modules/deliveryman/actions';
 import { Container, Actions } from './styles';
 
 export default function Options({ deliveryman }) {
   const [visible, setVisible] = useState(false);
 
+  const dispatch = useDispatch();
+
   async function handleDelete() {
     const option = window.confirm('Deseja mesmo excluir esse entregador?');
 
     if (option) {
-      try {
-        await api.delete(`/deliveryman/${deliveryman.id}`);
-      } catch (err) {
-        toast.warn('O entregador ainda possui entregas cadastradas!');
-      }
+      dispatch(destroyDeliverymanRequest(deliveryman.id));
     }
   }
 

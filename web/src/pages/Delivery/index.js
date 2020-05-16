@@ -66,7 +66,7 @@ export default function Delivery() {
         ) : (
           <Scroll>
             {deliveries.map((delivery) => (
-              <DeliveryItem status={delivery.status}>
+              <DeliveryItem key={delivery.id} status={delivery.status}>
                 <span>{`#${delivery.id}`}</span>
                 <span>{delivery.product}</span>
                 <span>{delivery.recipient.name}</span>

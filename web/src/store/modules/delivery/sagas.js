@@ -12,7 +12,7 @@ export function* load({ payload }) {
     const response = yield call(api.get, route);
     yield put(loadDeliverySuccess(response.data));
   } catch (err) {
-    toast.error('Falha ao carregadar as encomendas!');
+    toast.error('Falha ao carregar as encomendas!');
   }
 }
 

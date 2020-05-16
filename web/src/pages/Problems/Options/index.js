@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 import { MdMoreHoriz, MdVisibility, MdDeleteForever } from 'react-icons/md';
 
-import api from '~services/api';
+import { cancelDeliveryRequest } from '~/store/modules/problem/actions';
 import Detail from '../Detail';
 import { Container, Actions } from './styles';
 
@@ -10,15 +10,14 @@ export default function Options({ problem }) {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
   async function handleDelete() {
+    // eslint-disable-next-line no-alert
     const option = window.confirm('Deseja mesmo cancelar essa encomenda?');
 
     if (option) {
-      try {
-        await api.delete(`/problem/${problem._id}/cancel-delivery`);
-      } catch (err) {
-        toast.warn('Essa encomenda já foi cancelada!');
-      }
+      dispatch(cancelDeliveryRequest(problem._id));
     }
   }
 

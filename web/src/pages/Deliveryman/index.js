@@ -22,8 +22,6 @@ export default function Deliveryman() {
   const loading = useSelector((state) => state.deliveryman.loading);
   const deliverymans = useSelector((state) => state.deliveryman.deliverymans);
 
-  console.log(deliverymans);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -63,7 +61,7 @@ export default function Deliveryman() {
         ) : (
           <Scroll>
             {deliverymans.map((deliveryman) => (
-              <DeliverymanItem>
+              <DeliverymanItem key={deliveryman.id}>
                 <span>{`#${deliveryman.id}`}</span>
                 <Picture initialColors={random()}>
                   {deliveryman.avatar ? (
