@@ -4,16 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 
 import { loadRecipientRequest } from '~/store/modules/recipient/actions';
+import { Scroll } from '~/components/Scroll';
+import { Loading } from '~/components/Loading';
 import Options from './Options';
 import random from '~/utils/randomNumber';
-import {
-  Container,
-  Actions,
-  Scroll,
-  RecipientItem,
-  RecipientList,
-  Loading,
-} from './styles';
+import { Container, Actions, RecipientItem, RecipientList } from './styles';
 
 export default function Delivery() {
   const [name, setName] = useState('');

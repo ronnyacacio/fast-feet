@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 
 import { loadDeliverymanRequest } from '~/store/modules/deliveryman/actions';
+import { Scroll } from '~/components/Scroll';
+import { Loading } from '~/components/Loading';
 import Options from './Options';
 import initials from '~/utils/initials';
 import random from '~/utils/randomNumber';
 import {
   Container,
   Actions,
-  Scroll,
   DeliverymanItem,
   Picture,
   DeliverymanList,
-  Loading,
 } from './styles';
 
 export default function Deliveryman() {

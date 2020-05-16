@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loadProblemRequest } from '~/store/modules/problem/actions';
+import { Scroll } from '~/components/Scroll';
+import { Loading } from '~/components/Loading';
 import Options from './Options';
-import { Container, ProblemList, Loading, Scroll, ProblemItem } from './styles';
+import { Container, ProblemList, ProblemItem } from './styles';
 
 export default function Problems() {
   const problems = useSelector((state) => state.problem.problems);

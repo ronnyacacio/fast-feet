@@ -1,6 +1,4 @@
-import styled, { css } from 'styled-components';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import { ClipLoader } from 'react-spinners';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 20px 0 0 0;
@@ -20,29 +18,6 @@ export const ProblemList = styled.div`
       margin: 0;
       font-size: 16px;
     }
-  }
-`;
-
-export const Loading = styled(ClipLoader).attrs({
-  css: css`
-    position: absolute;
-    left: 48%;
-    top: 50%;
-  `,
-})``;
-
-export const Scroll = styled(PerfectScrollbar)`
-  padding: 0 80px;
-  height: 380px;
-
-  > p {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-size: 18px;
-    color: #7d40e3;
   }
 `;
 

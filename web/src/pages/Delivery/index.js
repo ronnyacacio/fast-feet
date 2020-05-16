@@ -5,6 +5,8 @@ import { FiSearch, FiPlus } from 'react-icons/fi';
 import { GiPlainCircle } from 'react-icons/gi';
 
 import { loadDeliveryRequest } from '~/store/modules/delivery/actions';
+import { Scroll } from '~/components/Scroll';
+import { Loading } from '~/components/Loading';
 import Options from './Options';
 import initials from '~/utils/initials';
 import random from '~/utils/randomNumber';
@@ -13,10 +15,8 @@ import {
   Container,
   Actions,
   DeliveryList,
-  Scroll,
   DeliveryItem,
   Deliveryman,
-  Loading,
 } from './styles';
 
 export default function Delivery() {
