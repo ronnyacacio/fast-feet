@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { FiSearch, FiPlus } from 'react-icons/fi';
-import { toast } from 'react-toastify';
 
-import api from '~/services/api';
+import { loadDeliverymanRequest } from '~/store/modules/deliveryman/actions';
 import Options from './Options';
 import initials from '~/utils/initials';
 import random from '~/utils/randomNumber';
@@ -17,24 +17,18 @@ import {
   Loading,
 } from './styles';
 
-export default function Delivery() {
-  const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [deliverymans, setDeliverymans] = useState([]);
+export default function Deliveryman() {
+  const [name, setName] = useState('');
+  const loading = useSelector((state) => state.deliveryman.loading);
+  const deliverymans = useSelector((state) => state.deliveryman.deliverymans);
+
+  console.log(deliverymans);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function loadDeliverymans() {
-      try {
-        setLoading(true);
-        const response = await api.get('deliveryman');
-        setDeliverymans(response.data);
-        setLoading(false);
-      } catch (err) {
-        toast.error('Falha ao carregadar as entregadores!');
-      }
-    }
-    loadDeliverymans();
-  }, [search]);
+    dispatch(loadDeliverymanRequest(name));
+  }, [dispatch, name]);
 
   return (
     <Container>
@@ -44,8 +38,8 @@ export default function Delivery() {
           <FiSearch color="#999" size={18} />
           <input
             placeholder="Buscar por nome do entregador"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <Link to="/deliveryman/create">

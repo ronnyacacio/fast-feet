@@ -30,6 +30,7 @@ export const Actions = styled.div`
     border: 1px solid #ddd;
 
     input {
+      width: 200px;
       height: 36px;
       font-size: 14px;
       border: none;
