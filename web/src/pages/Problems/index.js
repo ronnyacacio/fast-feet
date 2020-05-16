@@ -28,13 +28,17 @@ export default function Problems() {
           <Loading size={50} color="#7d40e3" loading={loading} />
         ) : (
           <Scroll>
-            {problems.map((problem) => (
-              <ProblemItem key={problem._id}>
-                <span>{`#${problem.delivery_id}`}</span>
-                <p>{problem.description}</p>
-                <Options problem={problem} />
-              </ProblemItem>
-            ))}
+            {problems ? (
+              problems.map((problem) => (
+                <ProblemItem key={problem._id}>
+                  <span>{`#${problem.delivery_id}`}</span>
+                  <p>{problem.description}</p>
+                  <Options problem={problem} />
+                </ProblemItem>
+              ))
+            ) : (
+              <p>Nenhum problema cadastrado :)</p>
+            )}
           </Scroll>
         )}
       </ProblemList>
