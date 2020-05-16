@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 
 import { loadDeliverymanRequest } from '~/store/modules/deliveryman/actions';
-import { Scroll, Loading } from '~/components';
-import Options from './Options';
+import { Scroll, Loading, Options } from '~/components';
 import initials from '~/utils/initials';
 import random from '~/utils/randomNumber';
 import {
@@ -73,7 +72,11 @@ export default function Deliveryman() {
                 </Picture>
                 <p>{deliveryman.name}</p>
                 <span>{deliveryman.email}</span>
-                <Options deliveryman={deliveryman} />
+                <Options
+                  deliveryman={deliveryman}
+                  namePage="entregador"
+                  route="deliveryman"
+                />
               </DeliverymanItem>
             ))}
           </Scroll>

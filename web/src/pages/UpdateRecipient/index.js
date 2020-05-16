@@ -24,9 +24,11 @@ const schema = Yup.object().shape({
 });
 
 export default function UpdateRecipient({ location }) {
+  const recipient = location.state.state;
+
   async function handleSubmit(data) {
     data.number = Number(data.number);
-    const { id } = location.state.recipient;
+    const { id } = recipient;
     try {
       await api.put(`recipients/${id}`, data);
       toast.success('Destinatário cadastrado com sucesso!');
@@ -38,7 +40,7 @@ export default function UpdateRecipient({ location }) {
 
   return (
     <FormContainer
-      initialData={location.state.recipient}
+      initialData={recipient}
       schema={schema}
       onSubmit={handleSubmit}
     >

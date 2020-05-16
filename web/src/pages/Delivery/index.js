@@ -5,8 +5,7 @@ import { FiSearch, FiPlus } from 'react-icons/fi';
 import { GiPlainCircle } from 'react-icons/gi';
 
 import { loadDeliveryRequest } from '~/store/modules/delivery/actions';
-import { Scroll, Loading } from '~/components';
-import Options from './Options';
+import { Scroll, Loading, Options } from '~/components';
 import initials from '~/utils/initials';
 import random from '~/utils/randomNumber';
 import { setColor } from '~/utils/selectColor';
@@ -88,7 +87,11 @@ export default function Delivery() {
                   <GiPlainCircle color={setColor(delivery.status)} size={10} />
                   <p>{delivery.status}</p>
                 </aside>
-                <Options delivery={delivery} />
+                <Options
+                  delivery={delivery}
+                  namePage="encomenda"
+                  route="delivery"
+                />
               </DeliveryItem>
             ))}
           </Scroll>

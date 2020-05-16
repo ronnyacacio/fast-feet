@@ -16,13 +16,15 @@ const schema = Yup.object().shape({
 });
 
 export default function UpdateDelivery({ location }) {
+  const delivery = location.state.state;
+
   const [recipients, setRecipients] = useState([]);
   const [deliverymans, setDeliverymans] = useState([]);
   const [selectedRecipient, setSelectedRecipient] = useState(
-    location.state.delivery.recipient
+    delivery.recipient
   );
   const [selectedDeliveryman, setSelectedDeliveryman] = useState(
-    location.state.delivery.deliveryman
+    delivery.deliveryman
   );
 
   useEffect(() => {
@@ -72,7 +74,7 @@ export default function UpdateDelivery({ location }) {
 
   async function handleSubmit({ product }) {
     try {
-      const { id } = location.state.delivery;
+      const { id } = delivery;
       const deliveryman_id = selectedDeliveryman.id;
       const recipient_id = selectedRecipient.id;
 
@@ -93,10 +95,7 @@ export default function UpdateDelivery({ location }) {
   }
 
   return (
-    <FormContainer
-      onSubmit={handleSubmit}
-      initialData={location.state.delivery}
-    >
+    <FormContainer onSubmit={handleSubmit} initialData={delivery}>
       <header>
         <strong>Edição de encomendas</strong>
         <Actions>
@@ -120,8 +119,8 @@ export default function UpdateDelivery({ location }) {
             placeholder="Selecione um destinatário"
             options={recipientsOptions}
             defaultValue={{
-              value: location.state.delivery.recipient.id,
-              label: location.state.delivery.recipient.name,
+              value: delivery.recipient.id,
+              label: delivery.recipient.name,
             }}
             onChange={handleChangeRecipient}
           />
@@ -131,8 +130,8 @@ export default function UpdateDelivery({ location }) {
             placeholder="Selecione um entregador"
             options={deliverymanOptions}
             defaultValue={{
-              value: location.state.delivery.deliveryman.id,
-              label: location.state.delivery.deliveryman.name,
+              value: delivery.deliveryman.id,
+              label: delivery.deliveryman.name,
             }}
             onChange={handleChangeDeliveryman}
           />

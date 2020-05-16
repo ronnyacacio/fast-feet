@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Delivery = styled.div`
   display: flex;
   flex-direction: column;
   p {
@@ -30,5 +30,22 @@ export const Container = styled.div`
     height: 50px;
     padding: 0 20px;
     border-radius: 4px;
+  }
+`;
+
+export const Problem = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  word-wrap: break-word;
+
+  strong {
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #666;
   }
 `;

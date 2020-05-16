@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 
 import { loadRecipientRequest } from '~/store/modules/recipient/actions';
-import { Scroll, Loading } from '~/components';
-import Options from './Options';
+import { Scroll, Loading, Options } from '~/components';
 import random from '~/utils/randomNumber';
 import { Container, Actions, RecipientItem, RecipientList } from './styles';
 
@@ -58,7 +57,11 @@ export default function Delivery() {
                 <span>
                   {`Rua ${recipient.street}, ${recipient.number}, ${recipient.city} - ${recipient.state}`}
                 </span>
-                <Options recipient={recipient} />
+                <Options
+                  recipient={recipient}
+                  namePage="destinatário"
+                  route="recipient"
+                />
               </RecipientItem>
             ))}
           </Scroll>

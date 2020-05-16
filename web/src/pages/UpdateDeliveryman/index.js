@@ -17,7 +17,7 @@ const schema = Yup.object().shape({
 });
 
 export default function UpdateDeliveryman({ location }) {
-  const { deliveryman } = location.state;
+  const deliveryman = location.state.state;
 
   const formRef = useRef(null);
 

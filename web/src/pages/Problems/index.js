@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loadProblemRequest } from '~/store/modules/problem/actions';
-import { Scroll, Loading } from '~/components';
-import Options from './Options';
+import { Scroll, Loading, Options } from '~/components';
+// import Options from './Options';
 import { Container, ProblemList, ProblemItem } from './styles';
 
 export default function Problems() {
@@ -34,7 +34,7 @@ export default function Problems() {
                 <ProblemItem key={problem._id}>
                   <span>{`#${problem.delivery_id}`}</span>
                   <p>{problem.description}</p>
-                  <Options problem={problem} />
+                  <Options problem={problem} namePage="encomenda" />
                 </ProblemItem>
               ))
             ) : (
