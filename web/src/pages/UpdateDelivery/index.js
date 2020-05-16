@@ -6,7 +6,8 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import { FormContainer, Actions, Content, Select, Input } from './styles';
+import { Select, Input } from '~/components';
+import { FormContainer, Actions, Content } from './styles';
 
 const schema = Yup.object().shape({
   product: Yup.string().required('O produto da entrega é obrigatório'),

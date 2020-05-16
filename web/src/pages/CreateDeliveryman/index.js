@@ -6,8 +6,7 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import Input from '~/components/Input';
-import AvatarInput from '~/components/AvatarInput';
+import { AvatarInput, Input } from '~/components';
 import { FormContainer, Actions, Content } from './styles';
 
 const schema = Yup.object().shape({

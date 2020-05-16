@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
-export const Scroll = styled(PerfectScrollbar)`
+const Scroll = styled(PerfectScrollbar)`
   padding: 0 80px;
   height: 380px;
 
@@ -15,3 +15,5 @@ export const Scroll = styled(PerfectScrollbar)`
     color: #7d40e3;
   }
 `;
+
+export default Scroll;
