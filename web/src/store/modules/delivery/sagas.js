@@ -2,7 +2,7 @@ import { all, takeLatest, call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
 import api from '~/services/api';
-import { loadDeliverySuccess } from './actions';
+import { loadDeliverySuccess, loadDeliveryRequest } from './actions';
 
 export function* load({ payload }) {
   try {
@@ -24,8 +24,12 @@ export function* destroy({ payload }) {
     const response = yield call(api.get, 'deliveries');
 
     yield put(loadDeliverySuccess(response.data));
+    yield put(loadDeliverySuccess(response.data));
   } catch (err) {
-    toast.error('Falha na exclusão da encomenda!');
+    toast.error(
+      'Essa encomenda não pode ser excluida pois já está a caminho do seu destino!'
+    );
+    yield put(loadDeliveryRequest());
   }
 }
 
