@@ -6,8 +6,10 @@ import { loadDeliverySuccess, destroyDeliveryFailure } from './actions';
 
 export function* load({ payload }) {
   try {
-    const { product } = payload;
-    const route = product ? `/deliveries?product=${product}` : '/deliveries';
+    const { product, page } = payload;
+    const route = product
+      ? `/deliveries?page=${page}&product=${product}`
+      : `/deliveries?page=${page}`;
 
     const response = yield call(api.get, route);
     yield put(loadDeliverySuccess(response.data));

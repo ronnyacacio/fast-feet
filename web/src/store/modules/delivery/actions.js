@@ -1,7 +1,7 @@
-export function loadDeliveryRequest(product) {
+export function loadDeliveryRequest(product, page) {
   return {
     type: '@delivery/LOAD_REQUEST',
-    payload: { product },
+    payload: { product, page },
   };
 }
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { darken } from 'polished';
 
 import { setBackground, setColor } from '~/utils/selectColor';
@@ -125,6 +125,45 @@ export const Deliveryman = styled.div`
     > span {
       font-size: 16px;
       color: ${(props) => colors.color[props.initialColors]};
+    }
+  }
+`;
+
+export const ContainerButtonPage = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 500px;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: #7d40e3;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.08, '#7d40e3')};
+    }
+
+    &.back {
+      ${(props) =>
+        props.page === 1
+          ? css`
+              cursor: default;
+              background: #ccc;
+            `
+          : ''}
+    }
+
+    &.next {
+      ${(props) =>
+        props.countDelivery < 10
+          ? css`
+              cursor: default;
+              background: #ccc;
+            `
+          : ''}
     }
   }
 `;

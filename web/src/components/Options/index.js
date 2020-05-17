@@ -12,7 +12,7 @@ import { destroyDeliveryRequest } from '~/store/modules/delivery/actions';
 import { destroyDeliverymanRequest } from '~/store/modules/deliveryman/actions';
 import { destroyRecipientRequest } from '~/store/modules/recipient/actions';
 import { cancelDeliveryRequest } from '~/store/modules/problem/actions';
-import { Detail } from '~/components';
+import Detail from '~/components/Detail';
 import { Container, Actions } from './styles';
 
 export default function Options({
