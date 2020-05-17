@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
@@ -41,6 +42,7 @@ export default function Options({
   }, [delivery, deliveryman, recipient]);
 
   async function handleDelete() {
+    // eslint-disable-next-line no-alert
     const option = window.confirm(
       `Deseja mesmo ${problem ? 'cancelar' : 'excluir'} ${
         problem || delivery ? 'essa' : 'esse'
@@ -62,8 +64,6 @@ export default function Options({
   function handleToggleVisible() {
     setVisible(!visible);
   }
-
-  console.log(open);
 
   return (
     <>
@@ -119,3 +119,73 @@ export default function Options({
     </>
   );
 }
+
+Options.propTypes = {
+  namePage: PropTypes.string.isRequired,
+  route: PropTypes.string,
+  delivery: PropTypes.shape({
+    id: PropTypes.number,
+    product: PropTypes.string,
+    status: PropTypes.string,
+    start_date: PropTypes.string,
+    end_date: PropTypes.string,
+    canceled_at: PropTypes.string,
+    problem: PropTypes.bool,
+    recipient: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      street: PropTypes.string,
+      number: PropTypes.number,
+      city: PropTypes.string,
+      state: PropTypes.string,
+      cep: PropTypes.string,
+    }),
+    deliveryman: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      avatar: PropTypes.shape({
+        id: PropTypes.number,
+        url: PropTypes.string,
+        path: PropTypes.string,
+      }),
+    }),
+    signature: PropTypes.shape({
+      id: PropTypes.number,
+      url: PropTypes.string,
+      path: PropTypes.string,
+    }),
+  }),
+  recipient: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    street: PropTypes.string,
+    number: PropTypes.number,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    cep: PropTypes.string,
+  }),
+  deliveryman: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    avatar_id: PropTypes.number,
+    avatar: PropTypes.shape({
+      id: PropTypes.number,
+      url: PropTypes.string,
+      path: PropTypes.string,
+    }),
+  }),
+  problem: PropTypes.shape({
+    _id: PropTypes.number,
+    delivery_id: PropTypes.number,
+    description: PropTypes.string,
+  }),
+};
+
+Options.defaultProps = {
+  route: '',
+  delivery: {},
+  recipient: {},
+  deliveryman: {},
+  problem: {},
+};

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -65,3 +66,20 @@ export default function UpdateDeliveryman({ location }) {
     </FormContainer>
   );
 }
+
+UpdateDeliveryman.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      state: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        avatar_id: PropTypes.number,
+        avatar: PropTypes.shape({
+          id: PropTypes.number,
+          url: PropTypes.string,
+          path: PropTypes.string,
+        }),
+      }),
+    }),
+  }).isRequired,
+};

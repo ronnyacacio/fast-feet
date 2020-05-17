@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
@@ -145,3 +146,63 @@ export default function UpdateDelivery({ location }) {
     </FormContainer>
   );
 }
+
+UpdateDelivery.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      state: PropTypes.shape({
+        id: PropTypes.number,
+        product: PropTypes.string,
+        status: PropTypes.string,
+        start_date: PropTypes.string,
+        end_date: PropTypes.string,
+        canceled_at: PropTypes.string,
+        problem: PropTypes.bool,
+        recipient: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string,
+          street: PropTypes.string,
+          number: PropTypes.number,
+          city: PropTypes.string,
+          state: PropTypes.string,
+          cep: PropTypes.string,
+        }),
+        deliveryman: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string,
+          avatar_id: PropTypes.number,
+          avatar: PropTypes.shape({
+            id: PropTypes.number,
+            url: PropTypes.string,
+            path: PropTypes.string,
+          }),
+        }),
+        signature: PropTypes.shape({
+          id: PropTypes.number,
+          url: PropTypes.string,
+          path: PropTypes.string,
+        }),
+      }),
+      recipient: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        street: PropTypes.string,
+        number: PropTypes.number,
+        city: PropTypes.string,
+        state: PropTypes.string,
+        cep: PropTypes.string,
+      }),
+      deliveryman: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        email: PropTypes.string,
+        avatar_id: PropTypes.number,
+        avatar: PropTypes.shape({
+          id: PropTypes.number,
+          url: PropTypes.string,
+          path: PropTypes.string,
+        }),
+      }),
+    }),
+  }).isRequired,
+};

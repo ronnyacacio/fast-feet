@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useField } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
 import { MdInsertPhoto } from 'react-icons/md';
 
 import api from '~/services/api';
@@ -72,3 +73,7 @@ export default function AvatarInput({ initials }) {
     </Container>
   );
 }
+
+AvatarInput.propTypes = {
+  initials: PropTypes.string.isRequired,
+};

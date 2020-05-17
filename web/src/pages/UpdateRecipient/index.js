@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import InputMask from 'react-input-mask';
@@ -87,3 +88,19 @@ export default function UpdateRecipient({ location }) {
     </FormContainer>
   );
 }
+
+UpdateRecipient.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      state: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        street: PropTypes.string,
+        number: PropTypes.number,
+        city: PropTypes.string,
+        state: PropTypes.string,
+        cep: PropTypes.string,
+      }),
+    }),
+  }).isRequired,
+};

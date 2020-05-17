@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -87,3 +88,50 @@ export default function Detail({ open, handleClose, delivery, problem }) {
     </Modal>
   );
 }
+
+Detail.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  delivery: PropTypes.shape({
+    id: PropTypes.number,
+    product: PropTypes.string,
+    status: PropTypes.string,
+    start_date: PropTypes.string,
+    end_date: PropTypes.string,
+    canceled_at: PropTypes.string,
+    problem: PropTypes.bool,
+    recipient: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      street: PropTypes.string,
+      number: PropTypes.number,
+      city: PropTypes.string,
+      state: PropTypes.string,
+      cep: PropTypes.string,
+    }),
+    deliveryman: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      avatar: PropTypes.shape({
+        id: PropTypes.number,
+        url: PropTypes.string,
+        path: PropTypes.string,
+      }),
+    }),
+    signature: PropTypes.shape({
+      id: PropTypes.number,
+      url: PropTypes.string,
+      path: PropTypes.string,
+    }),
+  }),
+  problem: PropTypes.shape({
+    _id: PropTypes.number,
+    delivery_id: PropTypes.number,
+    description: PropTypes.string,
+  }),
+};
+
+Detail.defaultProps = {
+  delivery: {},
+  problem: {},
+};
