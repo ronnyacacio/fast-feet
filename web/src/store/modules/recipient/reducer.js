@@ -21,6 +21,10 @@ export default function recipient(state = INITIAL_STATE, action) {
         draft.loading = true;
         break;
       }
+      case '@recipient/DESTROY_FAILURE': {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

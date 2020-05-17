@@ -8,9 +8,9 @@ import { Scroll, Loading, Options } from '~/components';
 import random from '~/utils/randomNumber';
 import { Container, Actions, RecipientItem, RecipientList } from './styles';
 
-export default function Delivery() {
+export default function Recipient() {
   const [name, setName] = useState('');
-  const loading = useSelector((state) => state.delivery.loading);
+  const loading = useSelector((state) => state.recipient.loading);
   const recipients = useSelector((state) => state.recipient.recipients);
 
   const dispatch = useDispatch();

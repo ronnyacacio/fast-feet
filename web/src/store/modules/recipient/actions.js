@@ -17,3 +17,9 @@ export function destroyRecipientRequest(id) {
     payload: { id },
   };
 }
+
+export function destroyRecipientFailure() {
+  return {
+    type: '@recipient/DESTROY_FAILURE',
+  };
+}

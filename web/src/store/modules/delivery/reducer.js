@@ -21,6 +21,10 @@ export default function delivery(state = INITIAL_STATE, action) {
         draft.loading = true;
         break;
       }
+      case '@delivery/DESTROY_FAILURE': {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

@@ -17,3 +17,9 @@ export function destroyDeliverymanRequest(id) {
     payload: { id },
   };
 }
+
+export function destroyDeliverymanFailure() {
+  return {
+    type: '@deliveryman/DESTROY_FAILURE',
+  };
+}

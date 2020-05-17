@@ -2,7 +2,7 @@ import { all, takeLatest, call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
 import api from '~/services/api';
-import { loadRecipientSuccess } from './actions';
+import { destroyRecipientFailure, loadRecipientSuccess } from './actions';
 
 export function* load({ payload }) {
   try {
@@ -26,6 +26,7 @@ export function* destroy({ payload }) {
     yield put(loadRecipientSuccess(response.data));
   } catch (err) {
     toast.error('O destinatário ainda possui entregas cadastradas!');
+    yield put(destroyRecipientFailure());
   }
 }
 

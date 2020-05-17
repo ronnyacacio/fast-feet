@@ -17,3 +17,9 @@ export function destroyDeliveryRequest(id) {
     payload: { id },
   };
 }
+
+export function destroyDeliveryFailure() {
+  return {
+    type: '@delivery/DESTROY_FAILURE',
+  };
+}
