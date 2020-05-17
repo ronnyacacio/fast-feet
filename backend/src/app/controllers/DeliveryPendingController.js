@@ -20,8 +20,8 @@ class DeliveryPendingController {
         canceled_at: null,
       },
       order: ['start_date'],
-      limit: 10,
       offset: (page - 1) * 10,
+      limit: 10,
       attributes: [
         'id',
         'deliveryman_id',

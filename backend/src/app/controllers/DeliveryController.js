@@ -14,104 +14,57 @@ import Queue from '../../lib/Queue';
 class DeliveryController {
   async index(req, res) {
     const { page = 1, product } = req.query;
-    const deliveries = product
-      ? await Delivery.findAll({
-          where: {
-            product: {
-              [Op.like]: `%${product}%`,
-            },
-          },
-          order: ['id'],
-          offset: (page - 1) * 10,
-          limit: 10,
+    const deliveries = await Delivery.findAll({
+      where: {
+        product: {
+          [Op.like]: product ? `%${product}%` : '%%',
+        },
+      },
+      order: ['id'],
+      offset: product ? 0 : (page - 1) * 10,
+      limit: product ? Number.MAX_SAFE_INTEGER : 10,
+      attributes: [
+        'id',
+        'product',
+        'status',
+        'start_date',
+        'end_date',
+        'canceled_at',
+        'problem',
+      ],
+      include: [
+        {
+          model: Recipient,
+          as: 'recipient',
           attributes: [
             'id',
-            'product',
-            'status',
-            'start_date',
-            'end_date',
-            'canceled_at',
-            'problem',
+            'name',
+            'street',
+            'number',
+            'city',
+            'state',
+            'cep',
           ],
+        },
+        {
+          model: Deliveryman,
+          as: 'deliveryman',
+          attributes: ['id', 'name'],
           include: [
             {
-              model: Recipient,
-              as: 'recipient',
-              attributes: [
-                'id',
-                'name',
-                'street',
-                'number',
-                'city',
-                'state',
-                'cep',
-              ],
-            },
-            {
-              model: Deliveryman,
-              as: 'deliveryman',
-              attributes: ['id', 'name'],
-              include: [
-                {
-                  model: File,
-                  as: 'avatar',
-                  attributes: ['id', 'url', 'path'],
-                },
-              ],
-            },
-            {
               model: File,
-              as: 'signature',
+              as: 'avatar',
               attributes: ['id', 'url', 'path'],
             },
           ],
-        })
-      : await Delivery.findAll({
-          order: ['id'],
-          offset: (page - 1) * 10,
-          limit: 10,
-          attributes: [
-            'id',
-            'product',
-            'status',
-            'start_date',
-            'end_date',
-            'canceled_at',
-            'problem',
-          ],
-          include: [
-            {
-              model: Recipient,
-              as: 'recipient',
-              attributes: [
-                'id',
-                'name',
-                'street',
-                'number',
-                'city',
-                'state',
-                'cep',
-              ],
-            },
-            {
-              model: Deliveryman,
-              as: 'deliveryman',
-              attributes: ['id', 'name'],
-              include: [
-                {
-                  model: File,
-                  as: 'avatar',
-                  attributes: ['id', 'url', 'path'],
-                },
-              ],
-            },
-            {
-              model: File,
-              as: 'signature',
-              attributes: ['id', 'url', 'path'],
-            },
-          ],
-        });
+        },
+        {
+          model: File,
+          as: 'signature',
+          attributes: ['id', 'url', 'path'],
+        },
+      ],
+    });
 
     return res.json(deliveries);
   }

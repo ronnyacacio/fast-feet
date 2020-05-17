@@ -158,7 +158,7 @@ export const ContainerButtonPage = styled.div`
 
     &.next {
       ${(props) =>
-        props.countDelivery < 10
+        props.countDelivery < 10 || props.product
           ? css`
               cursor: default;
               background: #ccc;

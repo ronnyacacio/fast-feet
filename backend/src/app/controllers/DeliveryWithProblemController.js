@@ -11,6 +11,7 @@ class DeliveryWithProblemController {
       },
       order: ['id'],
       offset: (page - 1) * 10,
+      limit: 10,
       attributes: [
         'id',
         'deliveryman_id',

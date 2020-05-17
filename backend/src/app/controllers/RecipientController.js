@@ -6,36 +6,24 @@ import Delivery from '../models/Delivery';
 
 class RecipientController {
   async index(req, res) {
-    const recipients = req.query.name
-      ? await Recipient.findAll({
-          where: {
-            name: {
-              [Op.like]: `%${req.query.name}%`,
-            },
-          },
-          attributes: [
-            'id',
-            'name',
-            'state',
-            'city',
-            'street',
-            'number',
-            'complement',
-            'cep',
-          ],
-        })
-      : await Recipient.findAll({
-          attributes: [
-            'id',
-            'name',
-            'state',
-            'city',
-            'street',
-            'number',
-            'complement',
-            'cep',
-          ],
-        });
+    const { name } = req.query;
+    const recipients = await Recipient.findAll({
+      where: {
+        name: {
+          [Op.like]: name ? `%${name}%` : '%%',
+        },
+      },
+      attributes: [
+        'id',
+        'name',
+        'state',
+        'city',
+        'street',
+        'number',
+        'complement',
+        'cep',
+      ],
+    });
 
     return res.json(recipients);
   }

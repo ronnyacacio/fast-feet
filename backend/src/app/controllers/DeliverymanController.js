@@ -6,32 +6,22 @@ import File from '../models/File';
 
 class DeliverymanController {
   async index(req, res) {
-    const delivarymans = req.query.name
-      ? await Deliveryman.findAll({
-          where: {
-            name: {
-              [Op.like]: `%${req.query.name}%`,
-            },
-          },
-          attributes: ['id', 'name', 'email', 'avatar_id'],
-          include: [
-            {
-              model: File,
-              as: 'avatar',
-              attributes: ['name', 'path', 'url'],
-            },
-          ],
-        })
-      : await Deliveryman.findAll({
-          attributes: ['id', 'name', 'email', 'avatar_id'],
-          include: [
-            {
-              model: File,
-              as: 'avatar',
-              attributes: ['name', 'path', 'url'],
-            },
-          ],
-        });
+    const { name } = req.query;
+    const delivarymans = await Deliveryman.findAll({
+      where: {
+        name: {
+          [Op.like]: name ? `%${name}%` : '%%',
+        },
+      },
+      attributes: ['id', 'name', 'email', 'avatar_id'],
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['name', 'path', 'url'],
+        },
+      ],
+    });
 
     return res.json(delivarymans);
   }

@@ -35,7 +35,7 @@ export default function Delivery() {
   }
 
   function handleNextPage() {
-    if (deliveries.length === 10) setPage(page + 1);
+    if (deliveries.length === 10 && !product) setPage(page + 1);
   }
 
   return (
@@ -109,7 +109,11 @@ export default function Delivery() {
                 </DeliveryItem>
               ))}
             </Scroll>
-            <ContainerButtonPage page={page} countDelivery={deliveries.length}>
+            <ContainerButtonPage
+              page={page}
+              countDelivery={deliveries.length}
+              product={product}
+            >
               <button type="button" className="back" onClick={handleBackPage}>
                 <FiArrowLeft color="#fff" size={30} />
               </button>
