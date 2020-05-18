@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
-import { Input, AvatarInput } from '~/components';
+import { Header, Input, AvatarInput } from '~/components';
 import history from '~/services/history';
 import initials from '~/utils/initials';
 import { FormContainer, Actions, Content } from './styles';
@@ -35,35 +35,42 @@ export default function UpdateDeliveryman({ location }) {
   }
 
   return (
-    <FormContainer
-      schema={schema}
-      initialData={deliveryman}
-      onSubmit={handleSubmit}
-      ref={formRef}
-    >
-      <header>
-        <strong>Edição de entregadores</strong>
-        <Actions>
-          <Link to="/deliveryman">
-            <button className="back" type="button">
-              <MdKeyboardArrowLeft color="#fff" size={22} />
-              VOLTAR
+    <>
+      <Header currentPage="DELIVERYMAN" />
+      <FormContainer
+        schema={schema}
+        initialData={deliveryman}
+        onSubmit={handleSubmit}
+        ref={formRef}
+      >
+        <header>
+          <strong>Edição de entregadores</strong>
+          <Actions>
+            <Link to="/deliveryman">
+              <button className="back" type="button">
+                <MdKeyboardArrowLeft color="#fff" size={22} />
+                VOLTAR
+              </button>
+            </Link>
+            <button className="save" type="submit">
+              <MdDone color="#fff" size={22} />
+              SALVAR
             </button>
-          </Link>
-          <button className="save" type="submit">
-            <MdDone color="#fff" size={22} />
-            SALVAR
-          </button>
-        </Actions>
-      </header>
-      <Content>
-        <AvatarInput name="avatar_id" initials={initials(deliveryman.name)} />
+          </Actions>
+        </header>
+        <Content>
+          <AvatarInput name="avatar_id" initials={initials(deliveryman.name)} />
 
-        <Input name="name" label="Nome" placeholder="John Doe" />
-        <br />
-        <Input name="email" label="Email" placeholder="johndoe@fastfeet.com" />
-      </Content>
-    </FormContainer>
+          <Input name="name" label="Nome" placeholder="John Doe" />
+          <br />
+          <Input
+            name="email"
+            label="Email"
+            placeholder="johndoe@fastfeet.com"
+          />
+        </Content>
+      </FormContainer>
+    </>
   );
 }
 

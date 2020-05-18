@@ -6,7 +6,7 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import { AvatarInput, Input } from '~/components';
+import { Header, AvatarInput, Input } from '~/components';
 import { FormContainer, Actions, Content } from './styles';
 
 const schema = Yup.object().shape({
@@ -29,29 +29,32 @@ export default function CreateDelivery() {
   }
 
   return (
-    <FormContainer schema={schema} onSubmit={handleSubmit} ref={formRef}>
-      <header>
-        <strong>Cadastro de entregadores</strong>
-        <Actions>
-          <Link to="/deliveryman">
-            <button className="back" type="button">
-              <MdKeyboardArrowLeft color="#fff" size={22} />
-              VOLTAR
+    <>
+      <Header currentPage="DELIVERYMAN" />
+      <FormContainer schema={schema} onSubmit={handleSubmit} ref={formRef}>
+        <header>
+          <strong>Cadastro de entregadores</strong>
+          <Actions>
+            <Link to="/deliveryman">
+              <button className="back" type="button">
+                <MdKeyboardArrowLeft color="#fff" size={22} />
+                VOLTAR
+              </button>
+            </Link>
+            <button className="save" type="submit">
+              <MdDone color="#fff" size={22} />
+              SALVAR
             </button>
-          </Link>
-          <button className="save" type="submit">
-            <MdDone color="#fff" size={22} />
-            SALVAR
-          </button>
-        </Actions>
-      </header>
-      <Content>
-        <AvatarInput name="avatar_id" />
+          </Actions>
+        </header>
+        <Content>
+          <AvatarInput name="avatar_id" />
 
-        <Input name="name" label="Nome" placeholder="Nome do entregador" />
-        <br />
-        <Input name="email" label="Email" placeholder="Email do entregador" />
-      </Content>
-    </FormContainer>
+          <Input name="name" label="Nome" placeholder="Nome do entregador" />
+          <br />
+          <Input name="email" label="Email" placeholder="Email do entregador" />
+        </Content>
+      </FormContainer>
+    </>
   );
 }

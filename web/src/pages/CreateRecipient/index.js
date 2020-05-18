@@ -7,7 +7,7 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import { Input } from '~/components';
+import { Header, Input } from '~/components';
 import { FormContainer, Actions, Content } from './styles';
 
 const schema = Yup.object().shape({
@@ -36,47 +36,54 @@ export default function CreateRecipient() {
   }
 
   return (
-    <FormContainer schema={schema} onSubmit={handleSubmit}>
-      <header>
-        <strong>Cadastro de destinatários</strong>
-        <Actions>
-          <Link to="/recipient">
-            <button className="back" type="button">
-              <MdKeyboardArrowLeft color="#fff" size={22} />
-              VOLTAR
+    <>
+      <Header currentPage="RECIPIENT" />
+      <FormContainer schema={schema} onSubmit={handleSubmit}>
+        <header>
+          <strong>Cadastro de destinatários</strong>
+          <Actions>
+            <Link to="/recipient">
+              <button className="back" type="button">
+                <MdKeyboardArrowLeft color="#fff" size={22} />
+                VOLTAR
+              </button>
+            </Link>
+            <button className="save" type="submit">
+              <MdDone color="#fff" size={22} />
+              SALVAR
             </button>
-          </Link>
-          <button className="save" type="submit">
-            <MdDone color="#fff" size={22} />
-            SALVAR
-          </button>
-        </Actions>
-      </header>
-      <Content>
-        <Input name="name" label="Nome" placeholder="Nome do destinatário" />
-        <div className="medium">
-          <Input name="street" label="Rua" placeholder="Nome do destinatário" />
-          <div>
-            <Input name="number" label="Número" />
-            <Input name="complement" label="Complemento" />
+          </Actions>
+        </header>
+        <Content>
+          <Input name="name" label="Nome" placeholder="Nome do destinatário" />
+          <div className="medium">
+            <Input
+              name="street"
+              label="Rua"
+              placeholder="Nome do destinatário"
+            />
+            <div>
+              <Input name="number" label="Número" />
+              <Input name="complement" label="Complemento" />
+            </div>
           </div>
-        </div>
-        <div className="down">
-          <Input
-            name="city"
-            label="Cidade"
-            placeholder="Cidade do destinatário"
-          />
-          <Input
-            name="state"
-            label="Estado"
-            placeholder="Estado do destinatário"
-          />
-          <InputMask mask="99999-999">
-            {() => <Input name="cep" label="Cep" />}
-          </InputMask>
-        </div>
-      </Content>
-    </FormContainer>
+          <div className="down">
+            <Input
+              name="city"
+              label="Cidade"
+              placeholder="Cidade do destinatário"
+            />
+            <Input
+              name="state"
+              label="Estado"
+              placeholder="Estado do destinatário"
+            />
+            <InputMask mask="99999-999">
+              {() => <Input name="cep" label="Cep" />}
+            </InputMask>
+          </div>
+        </Content>
+      </FormContainer>
+    </>
   );
 }

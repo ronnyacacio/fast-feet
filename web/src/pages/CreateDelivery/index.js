@@ -6,7 +6,7 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import api from '~/services/api';
 import history from '~/services/history';
-import { Input, Select } from '~/components';
+import { Header, Input, Select } from '~/components';
 import { FormContainer, Actions, Content } from './styles';
 
 const schema = Yup.object().shape({
@@ -88,54 +88,57 @@ export default function CreateDelivery() {
   }
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
-      <header>
-        <strong>Cadastro de encomendas</strong>
-        <Actions>
-          <Link to="/delivery">
-            <button className="back" type="button">
-              <MdKeyboardArrowLeft color="#fff" size={22} />
-              VOLTAR
+    <>
+      <Header currentPage="DELIVERY" />
+      <FormContainer onSubmit={handleSubmit}>
+        <header>
+          <strong>Cadastro de encomendas</strong>
+          <Actions>
+            <Link to="/delivery">
+              <button className="back" type="button">
+                <MdKeyboardArrowLeft color="#fff" size={22} />
+                VOLTAR
+              </button>
+            </Link>
+            <button className="save" type="submit">
+              <MdDone color="#fff" size={22} />
+              SALVAR
             </button>
-          </Link>
-          <button className="save" type="submit">
-            <MdDone color="#fff" size={22} />
-            SALVAR
-          </button>
-        </Actions>
-      </header>
-      <Content>
-        <aside>
-          <Select
-            name="recipient_id"
-            label="Destinatário"
-            placeholder="Selecione um destinatário"
-            options={recipientsOptions}
-            defaultValue={{
-              value: selectedRecipient.id,
-              label: selectedRecipient.name,
-            }}
-            onChange={handleChangeRecipient}
+          </Actions>
+        </header>
+        <Content>
+          <aside>
+            <Select
+              name="recipient_id"
+              label="Destinatário"
+              placeholder="Selecione um destinatário"
+              options={recipientsOptions}
+              defaultValue={{
+                value: selectedRecipient.id,
+                label: selectedRecipient.name,
+              }}
+              onChange={handleChangeRecipient}
+            />
+            <Select
+              name="deliveryman_id"
+              label="Entregador"
+              placeholder="Selecione um entregador"
+              options={deliverymanOptions}
+              defaultValue={{
+                value: selectedDeliveryman.id,
+                label: selectedDeliveryman.name,
+              }}
+              onChange={handleChangeDeliveryman}
+            />
+          </aside>
+          <Input
+            name="product"
+            label="Nome do produto"
+            placeholder="Ex: iPhone"
           />
-          <Select
-            name="deliveryman_id"
-            label="Entregador"
-            placeholder="Selecione um entregador"
-            options={deliverymanOptions}
-            defaultValue={{
-              value: selectedDeliveryman.id,
-              label: selectedDeliveryman.name,
-            }}
-            onChange={handleChangeDeliveryman}
-          />
-        </aside>
-        <Input
-          name="product"
-          label="Nome do produto"
-          placeholder="Ex: iPhone"
-        />
-      </Content>
-    </FormContainer>
+        </Content>
+      </FormContainer>
+    </>
   );
 }
 
