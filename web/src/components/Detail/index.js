@@ -125,13 +125,13 @@ Detail.propTypes = {
     }),
   }),
   problem: PropTypes.shape({
-    _id: PropTypes.number,
+    _id: PropTypes.string,
     delivery_id: PropTypes.number,
     description: PropTypes.string,
   }),
 };
 
 Detail.defaultProps = {
-  delivery: {},
-  problem: {},
+  delivery: null,
+  problem: null,
 };

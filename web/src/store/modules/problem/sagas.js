@@ -13,10 +13,10 @@ export function* load() {
 
     for (let i = 0; i < data.length; i += 1) {
       const response = yield call(api.get, `deliveries/${data[i].id}/problems`);
-      problems.push(response.data);
+      problems.push(...response.data);
     }
 
-    yield put(loadProblemSuccess(...problems));
+    yield put(loadProblemSuccess(problems));
   } catch (err) {
     toast.error('Falha ao carregar problemas!');
   }

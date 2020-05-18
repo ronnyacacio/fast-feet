@@ -36,8 +36,14 @@ class DeliveryWithDrawController {
     if (!delivery)
       return res.status(400).json({ error: 'Delivery does not exists' });
 
-    // if (delivery.status === 'RETIRADA')
-    //   return res.status(400).json({ error: 'Delivery already withdrawn' });
+    if (delivery.start_date)
+      return res.status(400).json({ error: 'Delivery already withdrawn' });
+
+    if (delivery.end_date)
+      return res.status(400).json({ error: 'Delivery already delivered' });
+
+    if (delivery.canceled_at)
+      return res.status(400).json({ error: 'Delivery already canceled' });
 
     if (Number(deliverymanId) !== delivery.deliveryman_id)
       return res.status(401).json({ error: 'Permission invalid' });

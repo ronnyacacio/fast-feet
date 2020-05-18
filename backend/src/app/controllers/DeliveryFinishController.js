@@ -19,7 +19,7 @@ class DeliveryFinishController {
     const deliveryman = await Deliveryman.findByPk(deliverymanId);
 
     if (!deliveryman) {
-      return res.status(400).json({ error: 'Delivery man does not exists' });
+      return res.status(400).json({ error: 'Deliveryman does not exists' });
     }
 
     const delivery = await Delivery.findOne({
@@ -28,7 +28,7 @@ class DeliveryFinishController {
         start_date: { [Op.not]: null },
         signature_id: null,
       },
-      attributes: ['deliveryman_id', 'start_date'],
+      attributes: ['deliveryman_id', 'start_date', 'canceled_at'],
     });
 
     if (!delivery) {
@@ -43,6 +43,11 @@ class DeliveryFinishController {
       return res
         .status(400)
         .json({ error: 'This delivery has not yet been withdram' });
+
+    console.log('OLA', delivery.canceled_at);
+
+    if (delivery.canceled_at)
+      return res.status(400).json({ error: 'Delivery already canceled' });
 
     const { signature_id } = req.body;
 

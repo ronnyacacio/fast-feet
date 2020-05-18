@@ -176,7 +176,7 @@ Options.propTypes = {
     }),
   }),
   problem: PropTypes.shape({
-    _id: PropTypes.number,
+    _id: PropTypes.string,
     delivery_id: PropTypes.number,
     description: PropTypes.string,
   }),
@@ -184,8 +184,8 @@ Options.propTypes = {
 
 Options.defaultProps = {
   route: '',
-  delivery: {},
-  recipient: {},
-  deliveryman: {},
-  problem: {},
+  delivery: null,
+  recipient: null,
+  deliveryman: null,
+  problem: null,
 };

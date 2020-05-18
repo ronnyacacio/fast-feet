@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { loadProblemRequest } from '~/store/modules/problem/actions';
 import { Scroll, Loading, Options } from '~/components';
-// import Options from './Options';
 import { Container, ProblemList, ProblemItem } from './styles';
 
 export default function Problems() {
@@ -29,7 +28,7 @@ export default function Problems() {
           <Loading size={50} color="#7d40e3" loading={loading} />
         ) : (
           <Scroll>
-            {problems ? (
+            {problems.length > 0 ? (
               problems.map((problem) => (
                 <ProblemItem key={problem._id}>
                   <span>{`#${problem.delivery_id}`}</span>
@@ -38,7 +37,7 @@ export default function Problems() {
                 </ProblemItem>
               ))
             ) : (
-              <p>Nenhum problema cadastrado :)</p>
+              <p>{`Nenhum problema cadastrado :)`}</p>
             )}
           </Scroll>
         )}
