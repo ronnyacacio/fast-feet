@@ -141,5 +141,3 @@ export default function CreateDelivery() {
     </>
   );
 }
-
-// props.location.state.product

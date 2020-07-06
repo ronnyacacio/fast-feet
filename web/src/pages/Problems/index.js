@@ -39,7 +39,7 @@ export default function Problems() {
                   </ProblemItem>
                 ))
               ) : (
-                <p>Nenhum problema cadastrado :)</p>
+                <p>{`Nenhum problema cadastrado :${')'}`}</p>
               )}
             </Scroll>
           )}
