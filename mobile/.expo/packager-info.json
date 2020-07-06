@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 18231,
+  "expoServerNgrokUrl": "https://z3-8q8.ronnyacacio.mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.z3-8q8.ronnyacacio.mobile.exp.direct",
+  "ngrokPid": 18328,
   "webpackServerPort": null
 }
