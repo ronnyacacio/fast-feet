@@ -8,8 +8,8 @@ import Profile from '../screens/Profile';
 const { Navigator, Screen } = createBottomTabNavigator();
 
 const icons = {
-  Delivery: 'menu',
-  Profile: 'person-outline',
+  Delivery: 'reorder',
+  Profile: 'account-circle',
 };
 
 export default function AppRoutes() {
@@ -24,7 +24,6 @@ export default function AppRoutes() {
           height: '10%',
         },
         iconStyle: {
-          margin: 0,
           marginTop: 15,
         },
         labelStyle: {
