@@ -23,6 +23,7 @@ const routes = new Router();
 const upload = multer(multerConfig);
 
 routes.post('/sessions', SessionController.store);
+routes.get('/sessions/deliveryman/:id', DeliverymanController.show);
 
 // Deliveries entregues
 routes.get('/deliveryman/:id/deliveries', DeliveryDeliveredController.index);

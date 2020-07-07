@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, StatusBar } from 'react-native';
 
+import { AuthProvider } from './contexts/auth';
 import Routes from './routes';
 
 export default function App() {
@@ -11,7 +12,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </>
   );
 }
