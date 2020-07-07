@@ -21,12 +21,21 @@ export default function AppRoutes() {
         inactiveTintColor: '#999999',
         style: {
           borderTopColor: '#00000026',
+          height: '10%',
+        },
+        iconStyle: {
+          margin: 0,
+          marginTop: 15,
+        },
+        labelStyle: {
+          fontSize: 14,
+          marginBottom: 15,
         },
       }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           const name = icons[route.name];
-          return <Icon name={name} size={20} color={color} />;
+          return <Icon name={name} size={25} color={color} />;
         },
       })}
     >
