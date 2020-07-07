@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import ip from 'ip';
 
 class File extends Model {
   static init(sequelize) {
@@ -9,7 +10,7 @@ class File extends Model {
         url: {
           type: Sequelize.VIRTUAL,
           get() {
-            return `http://192.168.4.111:3333/files/${this.path}`;
+            return `http://${ip.address()}:3333/files/${this.path}`;
           },
         },
       },
