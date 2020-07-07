@@ -10,8 +10,9 @@ export default function SignIn() {
 
   const { signIn } = useAuth();
 
-  async function handleSignIn() {
+  function handleSignIn() {
     signIn(id);
+    setId('');
   }
 
   return (
