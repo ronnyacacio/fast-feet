@@ -7,15 +7,8 @@ import pt from 'date-fns/locale/pt-BR';
 import { utcToZonedTime } from 'date-fns-tz';
 
 import { useAuth } from '../../contexts/auth';
-import {
-  Container,
-  Img,
-  Info,
-  Title,
-  Description,
-  Button,
-  TextButton,
-} from './styles';
+import { Button } from '../../components';
+import { Container, Img, Info, Title, Description } from './styles';
 
 export default function Profile() {
   const {
@@ -58,8 +51,8 @@ export default function Profile() {
         <Description>{dateFormatted}</Description>
       </Info>
 
-      <Button onPress={handleSignOut}>
-        <TextButton>Logout</TextButton>
+      <Button color="#e74040" onPress={handleSignOut}>
+        Logout
       </Button>
     </Container>
   );

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
 
 import { useAuth } from '../../contexts/auth';
+import { Button } from '../../components';
 import logo from '../../assets/logo.png';
-import { Container, Img, Form, Input, Button, TextButton } from './styles';
+import { Container, Img, Form, Input } from './styles';
 
 export default function SignIn() {
   const [id, setId] = useState('');
@@ -28,8 +28,8 @@ export default function SignIn() {
           value={id}
           onChangeText={setId}
         />
-        <Button onPress={handleSignIn}>
-          <TextButton>Entrar no sistema</TextButton>
+        <Button color="#82bf18" onPress={handleSignIn}>
+          Entrar no sistema
         </Button>
       </Form>
     </Container>

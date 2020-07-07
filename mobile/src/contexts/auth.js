@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { Alert, View, ActivityIndicator } from 'react-native';
+import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import api from '../services/api';
