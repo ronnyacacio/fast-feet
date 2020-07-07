@@ -34,7 +34,10 @@ export function AuthProvider({ children }) {
         JSON.stringify(response.data)
       );
     } catch (err) {
-      Alert.alert('Falhou', 'falhou');
+      Alert.alert(
+        'Falha na autenticação',
+        'Houve um erro no login, verifique seu ID'
+      );
     }
   }
 
