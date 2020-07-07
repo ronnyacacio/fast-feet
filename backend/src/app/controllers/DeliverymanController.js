@@ -97,8 +97,6 @@ class DeliverymanController {
       where: { deliveryman_id: req.params.id },
     });
 
-    console.log(deliveries);
-
     if (deliveries.length > 0)
       return res
         .status(400)

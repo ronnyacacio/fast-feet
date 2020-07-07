@@ -44,8 +44,6 @@ class DeliveryFinishController {
         .status(400)
         .json({ error: 'This delivery has not yet been withdram' });
 
-    console.log('OLA', delivery.canceled_at);
-
     if (delivery.canceled_at)
       return res.status(400).json({ error: 'Delivery already canceled' });
 
