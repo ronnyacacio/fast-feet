@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 import { utcToZonedTime } from 'date-fns-tz';
 
-import { useAuth } from '../../contexts/auth';
+import useAuth from '../../hooks/useAuth';
 import { Button } from '../../components';
 import { Container, Img, Info, Title, Description } from './styles';
 

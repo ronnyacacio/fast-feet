@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import api from '../services/api';
 
-const AuthContext = createContext({});
+export const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
   const [deliveryman, setDeliveryman] = useState(null);
@@ -52,10 +52,4 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-
-  return context;
 }

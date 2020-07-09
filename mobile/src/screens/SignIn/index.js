@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useAuth } from '../../contexts/auth';
+import useAuth from '../../hooks/useAuth';
 import { Button } from '../../components';
 import logo from '../../assets/logo.png';
 import { Container, Img, Form, Input } from './styles';

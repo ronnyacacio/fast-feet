@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { useAuth } from '../contexts/auth';
+import useAuth from '../hooks/useAuth';
 import Loading from '../screens/Loading';
 import SignIn from '../screens/SignIn';
 import AppRoutes from './app.routes';
