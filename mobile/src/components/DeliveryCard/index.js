@@ -1,7 +1,7 @@
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';

@@ -114,9 +114,7 @@ export const Value = styled.Text`
 
 export const Detail = styled.TouchableOpacity.attrs({
   activeOpacity: 0.3,
-})`
-  /* padding: 10px; */
-`;
+})``;
 
 export const TextDetail = styled.Text`
   font-size: 12px;

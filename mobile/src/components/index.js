@@ -1,4 +1,5 @@
 import Button from './Button';
 import DeliveryCard from './DeliveryCard';
+import WrapperDelivery from './WrapperDelivery';
 
-export { Button, DeliveryCard };
+export { Button, DeliveryCard, WrapperDelivery };
