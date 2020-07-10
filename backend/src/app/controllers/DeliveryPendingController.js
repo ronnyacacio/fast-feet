@@ -40,7 +40,6 @@ class DeliveryPendingController {
             'name',
             'state',
             'city',
-            'district',
             'street',
             'number',
             'complement',

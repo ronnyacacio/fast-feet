@@ -40,7 +40,6 @@ class DeliveryDeliveredController {
             'name',
             'state',
             'city',
-            'district',
             'street',
             'number',
             'complement',
