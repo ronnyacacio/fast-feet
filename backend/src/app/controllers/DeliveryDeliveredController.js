@@ -30,6 +30,7 @@ class DeliveryDeliveredController {
         'start_date',
         'end_date',
         'canceled_at',
+	'created_at',
       ],
       include: [
         {
