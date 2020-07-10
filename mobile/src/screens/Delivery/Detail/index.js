@@ -2,6 +2,7 @@ import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 
 import React from 'react';
+import { Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
@@ -44,6 +45,22 @@ export default function Detail() {
   }
 
   function handleNavigateToInform() {
+    if (!delivery.start_date) {
+      Alert.alert(
+        'Oooops',
+        'Primeiro retire o produto para poder cadastrar problemas'
+      );
+      return;
+    }
+    if (delivery.end_date) {
+      Alert.alert('Oooops', 'O produto já foi entregue ao destinatário!');
+      return;
+    }
+    if (delivery.canceled_at) {
+      Alert.alert('Oooops', 'A entregue desse produto já foi cancelada!');
+      return;
+    }
+
     navigation.navigate('Inform', { delivery_id: delivery.id });
   }
 
