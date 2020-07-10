@@ -6,6 +6,7 @@ import { MaterialIcons as Icon } from '@expo/vector-icons';
 import Dashboard from '../screens/Delivery/Dashboard';
 import Detail from '../screens/Delivery/Detail';
 import Inform from '../screens/Delivery/Inform';
+import ViewProblems from '../screens/Delivery/ViewProblems';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -49,6 +50,23 @@ export default function DeliveryRoutes() {
         component={Inform}
         options={({ navigation }) => ({
           title: 'Informar Problema',
+          headerTitleStyle: {
+            fontSize: 16,
+            fontWeight: 'bold',
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="keyboard-arrow-left" size={25} color="#fff" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+
+      <Screen
+        name="ViewProblems"
+        component={ViewProblems}
+        options={({ navigation }) => ({
+          title: 'Vizualizar Problemas',
           headerTitleStyle: {
             fontSize: 16,
             fontWeight: 'bold',

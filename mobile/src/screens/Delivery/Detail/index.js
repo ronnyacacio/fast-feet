@@ -64,6 +64,10 @@ export default function Detail() {
     navigation.navigate('Inform', { delivery_id: delivery.id });
   }
 
+  function handleNavigateToViewProblems() {
+    navigation.navigate('ViewProblems', { delivery_id: delivery.id });
+  }
+
   return (
     <WrapperDelivery>
       <Container>
@@ -129,7 +133,7 @@ export default function Detail() {
 
           <Divider />
 
-          <Button onPress={() => {}}>
+          <Button onPress={handleNavigateToViewProblems}>
             <IconInfo />
             <Label>Vizualizar</Label>
             <Label>Problemas</Label>
