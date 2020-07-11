@@ -68,6 +68,10 @@ export default function Detail() {
     navigation.navigate('ViewProblems', { delivery_id: delivery.id });
   }
 
+  function handleNavigateToConfirm() {
+    navigation.navigate('Confirm', { delivery_id: delivery.id });
+  }
+
   return (
     <WrapperDelivery>
       <Container>
@@ -141,7 +145,7 @@ export default function Detail() {
 
           <Divider />
 
-          <Button onPress={() => {}}>
+          <Button onPress={handleNavigateToConfirm}>
             <IconAlarm />
             <Label>Confirmar</Label>
             <Label>Entrega</Label>
