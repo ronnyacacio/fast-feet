@@ -15,9 +15,12 @@ import {
   Header,
   IconShipping,
   HeaderTitle,
+  Status,
   Info,
   Title,
   Value,
+  ButtonWithdraw,
+  Withdraw,
   IconEvent,
   Date,
   CardButton,
@@ -44,11 +47,19 @@ export default function Detail() {
     });
   }
 
+  function handleNavigateToWithdraw() {
+    if (delivery.start_date) {
+      Alert.alert('Oooops', 'Essa encomenda já foi retirada!');
+      return;
+    }
+    navigation.navigate('Withdraw', { delivery: delivery });
+  }
+
   function handleNavigateToInform() {
     if (!delivery.start_date) {
       Alert.alert(
         'Oooops',
-        'Primeiro retire o produto para poder cadastrar problemas'
+        'Primeiro retire o produto para poder cadastrar problemas!'
       );
       return;
     }
@@ -69,6 +80,17 @@ export default function Detail() {
   }
 
   function handleNavigateToConfirm() {
+    if (!delivery.start_date) {
+      Alert.alert(
+        'Oooops',
+        'Primeiro retire o produto para poder confirmar a entrega!'
+      );
+      return;
+    }
+    if (delivery.end_date) {
+      Alert.alert('Oooops', 'O produto já foi entregue ao destinatário!');
+      return;
+    }
     navigation.navigate('Confirm', { delivery_id: delivery.id });
   }
 
@@ -103,10 +125,23 @@ export default function Detail() {
             <HeaderTitle>Informações da entrega</HeaderTitle>
           </Header>
 
-          <Info>
-            <Title>Status</Title>
-            <Value>{delivery.status}</Value>
-          </Info>
+          {delivery.start_date ? (
+            <Info>
+              <Title>Status</Title>
+              <Value>{delivery.status}</Value>
+            </Info>
+          ) : (
+            <Status>
+              <Info>
+                <Title>Status</Title>
+                <Value>{delivery.status}</Value>
+              </Info>
+
+              <ButtonWithdraw onPress={handleNavigateToWithdraw}>
+                <Withdraw>Retirar</Withdraw>
+              </ButtonWithdraw>
+            </Status>
+          )}
 
           <Date>
             <Info>

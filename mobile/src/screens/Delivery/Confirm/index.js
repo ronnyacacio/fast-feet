@@ -79,7 +79,7 @@ export default function Confirm() {
       );
 
       Alert.alert('Sucesso', 'A confirmação de entrega do produto foi feita!');
-      navigation.goBack();
+      navigation.navigate('Dashboard');
     } catch (err) {
       Alert.alert('Falha', 'Ocorreu um erro inesperado, tente novamente!');
     }

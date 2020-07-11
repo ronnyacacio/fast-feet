@@ -5,6 +5,7 @@ import { MaterialIcons as Icon } from '@expo/vector-icons';
 
 import Dashboard from '../screens/Delivery/Dashboard';
 import Detail from '../screens/Delivery/Detail';
+import Withdraw from '../screens/Delivery/Withdraw';
 import Inform from '../screens/Delivery/Inform';
 import ViewProblems from '../screens/Delivery/ViewProblems';
 import Confirm from '../screens/Delivery/Confirm';
@@ -34,6 +35,23 @@ export default function DeliveryRoutes() {
         component={Detail}
         options={({ navigation }) => ({
           title: 'Detalhes da encomenda',
+          headerTitleStyle: {
+            fontSize: 16,
+            fontWeight: 'bold',
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="keyboard-arrow-left" size={25} color="#fff" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+
+      <Screen
+        name="Withdraw"
+        component={Withdraw}
+        options={({ navigation }) => ({
+          title: 'Retirar encomenda',
           headerTitleStyle: {
             fontSize: 16,
             fontWeight: 'bold',

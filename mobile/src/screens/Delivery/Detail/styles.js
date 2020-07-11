@@ -32,6 +32,13 @@ export const HeaderTitle = styled.Text`
   margin-left: 5px;
 `;
 
+export const Status = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 40px;
+`;
+
 export const Info = styled.View`
   margin: 5px 0 10px;
 `;
@@ -46,6 +53,16 @@ export const Title = styled.Text`
 export const Value = styled.Text`
   font-size: 14px;
   color: #666666;
+`;
+
+export const ButtonWithdraw = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.3,
+})``;
+
+export const Withdraw = styled.Text`
+  font-size: 14px;
+  color: #7d40e7;
+  font-weight: bold;
 `;
 
 export const IconEvent = styled(Icon).attrs({
