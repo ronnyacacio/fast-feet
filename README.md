@@ -45,13 +45,17 @@ O FastFeet é um projeto que visa gerenciar as encomendas e entregas de uma tran
 ## 🌐 WEB
 
 <h1 align="center">
-    <img src=".github/fastfeet-web.gif" />
+
+[![FastFeet WEB](https://res.cloudinary.com/marcomontalbano/image/upload/v1594744739/video_to_markdown/images/youtube--JOzv2KwB0Aw-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/JOzv2KwB0Aw "FastFeet WEB")
+
 </h1>
 
 ## 📱 Mobile
 
 <h1 align="center">
-    <img src=".github/fastfeet-mobile.gif" />
+
+[![FastFeet Mobile](https://res.cloudinary.com/marcomontalbano/image/upload/v1594744378/video_to_markdown/images/youtube--0Hnx4bo6yl8-4834888bcd2b4555e72811f2a6951e10.jpg)](https://youtu.be/0Hnx4bo6yl8 "FastFeet Mobile")
+
 </h1>
 
 ## 🚀 Pricipais Tecnologias
