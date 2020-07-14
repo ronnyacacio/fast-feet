@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { Button as Btn } from '../../../components';
 
 export const Container = styled.View`
-  flex: 0.5;
+  flex: 0.7;
 `;
 
 export const Content = styled.View`

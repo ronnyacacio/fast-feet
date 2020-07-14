@@ -22,7 +22,10 @@ export default function Withdraw() {
       Alert.alert('Sucesso', 'A encomenda foi retirada!');
       navigation.navigate('Dashboard');
     } catch (err) {
-      Alert.alert('Falha', 'O limite de retiradas diárias foi atingido!');
+      Alert.alert(
+        'Falha',
+        'O limite de retiradas diárias foi atingido ou está fora da hora de expediente!'
+      );
     }
   }
 
@@ -43,6 +46,14 @@ export default function Withdraw() {
           <Info>
             <Title>Observação</Title>
             <Value>Você só pode retirar 5 encomendas por dia.</Value>
+          </Info>
+
+          <Info>
+            <Title>Observação</Title>
+            <Value>
+              Você só pode retirar as encomendas em horário comercial -{' '}
+              {`(08:00h às 17:00h)`}
+            </Value>
           </Info>
         </Content>
 
